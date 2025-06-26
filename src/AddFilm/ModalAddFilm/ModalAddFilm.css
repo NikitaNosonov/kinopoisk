@@ -1,0 +1,7 @@
+.ModalAddFilm .input {
+    width: 550px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+
+}

@@ -1,0 +1,62 @@
+.ActorsBlock {
+    margin-left: 60px;
+    padding-right: 50px;
+    max-width: 500px;
+    padding-top: 20px;
+}
+
+.ActorsBlock p {
+    font-size: 13px;
+    color: rgb(157, 156, 156);
+}
+
+.ActorsBlock .btn {
+    background: rgb(221, 221, 221);
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    width: 300px;
+    height: 45px;
+    border: 0;
+    transition: all 500ms ease;
+}
+
+.ActorsBlock .btn:hover {
+    background: rgb(202, 202, 202);
+    transform: scale(1.1)
+}
+
+.ActorsBlock .actors p:hover {
+    color: #ef7e05
+}
+
+.ActorsBlock .actors h4 {
+    padding-bottom: 20px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.ActorsBlock .actors p {
+    font-size: 12.5px;
+    padding: 3px 0;
+    color: black;
+    font-weight: 400;
+}
+
+.ActorsBlock .actors h5 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-weight: 500;
+    font-size: 12.5px;
+    color: #ef7e05
+}
+
+.ActorsBlock .actors img {
+    max-width: 130px;
+}
+
+.ActorsBlock .iimg {
+    max-width: 180px;
+}

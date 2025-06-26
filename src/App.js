@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import NavBar from "./NavBar/NavBar";
+import ListFilmBlocks from "./ReadFilm/ListFilmBlocks/ListFilmBlocks";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import InfoFilmBlocks from "./ReadFilm/InfoFilmBlocks/InfoFilmBlocks";
+
+const NavbarLayout = () => {
+    return (
+        <>
+            <NavBar />
+            <Outlet />
+        </>
+    );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Navigate to="/listFilms" replace />} />
+              <Route path="/listFilms" element={<NavbarLayout />}>
+                  <Route index element={<ListFilmBlocks />} />
+                  <Route path="listFilms" element={<ListFilmBlocks />} />
+                  <Route path=":id" element={<InfoFilmBlocks />} />
+              </Route>
+          </Routes>
+      </BrowserRouter>
   );
 }
 

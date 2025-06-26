@@ -1,0 +1,97 @@
+.ItemFilmBlock {
+    max-width: 860px;
+    margin: 10px 230px;
+    padding: 10px 10px;
+    transition: all 500ms ease;
+    height: 140px;
+}
+
+.ItemFilmBlock:hover {
+    background: #f4f4f4;
+    border-radius: 25px;
+    height: 140px;
+}
+
+.ItemFilmBlock hr {
+    margin-bottom: 15px;
+}
+
+.ItemFilmBlock a {
+    display: flex;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: black;
+}
+
+.ItemFilmBlock a .id {
+    width: 30px;
+    border: 0;
+}
+
+.ItemFilmBlock a .id h1 {
+    font-size: 20px;
+    margin-top: -30px;
+}
+
+.ItemFilmBlock a .poster {
+    width: 80px;
+    border: 0;
+}
+
+.ItemFilmBlock a .poster img {
+    width: 75px;
+}
+
+.ItemFilmBlock a .content {
+    width: 340px;
+    border: 0;
+}
+
+.ItemFilmBlock a .content h1 {
+    font-size: 17px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: start;
+    margin-bottom: 5px;
+    margin-top: -20px;
+
+}
+
+.ItemFilmBlock a .content h2 {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 5px;
+}
+
+.ItemFilmBlock a .content p {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(157, 156, 156);
+}
+
+.ItemFilmBlock a .grade {
+    width: 55px;
+    border: 0;
+}
+
+.ItemFilmBlock a .grade p{
+    font-size: 13px  ;
+    font-weight: 400  ;
+    font-style: normal  ;
+    color: rgb(157, 156, 156)  ;
+    text-align: start;
+}
+
+.ItemFilmBlock a .btns {
+    border: 0;
+    display: flex;
+    margin-left: 120px;
+    width: 30px;
+}
+
+.ItemFilmBlock a .btns .btn1 {
+    height: 35px;
+    margin-top: 25px;
+}

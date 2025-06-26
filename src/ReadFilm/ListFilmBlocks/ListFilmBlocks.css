@@ -1,0 +1,14 @@
+.ListFilmBlocks {
+    background: rgb(255, 255, 255);
+    margin: 70px 60px;
+    height: 100%;
+    width: 1320px;
+    display: block;
+}
+
+.ListFilmBlocks h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 30px;
+}
