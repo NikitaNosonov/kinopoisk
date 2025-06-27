@@ -4,6 +4,7 @@ import NavBar from "./NavBar/NavBar";
 import ListFilmBlocks from "./ReadFilm/ListFilmBlocks/ListFilmBlocks";
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import InfoFilmBlocks from "./ReadFilm/InfoFilmBlocks/InfoFilmBlocks";
+import PageAddFilm from "./AddFilm/PageAddFilm/PageAddFilm";
 
 const NavbarLayout = () => {
     return (
@@ -22,7 +23,8 @@ function App() {
               <Route path="/listFilms" element={<NavbarLayout />}>
                   <Route index element={<ListFilmBlocks />} />
                   <Route path="listFilms" element={<ListFilmBlocks />} />
-                  <Route path=":id" element={<InfoFilmBlocks />} />
+                  <Route path="addFilm/:id" element={<PageAddFilm />} />
+                  <Route path="film/:id" element={<InfoFilmBlocks />} />
               </Route>
           </Routes>
       </BrowserRouter>

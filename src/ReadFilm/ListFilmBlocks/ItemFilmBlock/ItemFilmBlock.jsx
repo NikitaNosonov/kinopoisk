@@ -23,7 +23,7 @@ const ItemFilmBlock = (props) => {
 
     return (
         <div className="ItemFilmBlock">
-            <Link to={`film${props.films.id}`}
+            <Link to={`film/${props.films.id}`}
                   state={{
                       id: props.films.id,
                   }}>

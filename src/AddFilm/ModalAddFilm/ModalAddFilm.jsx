@@ -2,18 +2,34 @@ import React, {useState} from 'react';
 import './ModalAddFilm.css'
 import {Button, TextField} from '@mui/material';
 import {useQueryClient} from "@tanstack/react-query";
+import {useNavigate} from "react-router-dom";
 
 const ModalAddFilm = (props) => {
     const [film, setFilm] = useState(
-        { id: '', firstName: '', secondName: '', description1: '', grade: '' });
+        {firstName: '', secondName: '', description1: '', grade: '' });
 
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
 
     let index = props.index() + 1;
+    let indexChild = props.indexChild() + 1;
 
     const fetchTask = () => {
         queryClient.invalidateQueries(['films']);
     }
+
+    // const fetchAddAboutFilm = (id) => {
+    //     fetch(`/api/films/${id}/infoFilm`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             id: indexChild,
+    //             listFilmsEntityId: index,
+    //         })
+    //     })
+    // }
 
     const addNewFilm = (e) => {
         e.preventDefault()
@@ -24,14 +40,16 @@ const ModalAddFilm = (props) => {
             },
             body: JSON.stringify({
                 id: index,
+                infoFilmId: indexChild,
                 firstName: film.firstName,
                 secondName: film.secondName,
                 description1: film.description1,
                 grade: film.grade,
             })
-        }).then(fetchTask);
-        props.setAddModal(false);
-        setFilm({ id: '', firstName: '', secondName: '', description1: '', grade: '' })
+        })
+            .then(fetchTask)
+        setFilm({ firstName: '', secondName: '', description1: '', grade: '' })
+        navigate(`addFilm/${index}`)
     }
 
     return (

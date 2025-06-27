@@ -4,7 +4,6 @@ import './ActorsBlock.css'
 const ActorsBlock = (props) => {
     return (
         <div className="ActorsBlock">
-            {/*<img src="/img/grade.png" alt="" className="iimg"/>*/}
             <p style={{fontSize: "14px"}}>{props.infoFilm.details.grades}</p>
             <button className="btn" style={{width: "200px"}}>Оценить фильм</button>
             <div className="actors">
@@ -21,7 +20,6 @@ const ActorsBlock = (props) => {
                     <p>{rol}</p>
                 ))}
                 <h5>{props.infoFilm.details.colRolesDuplicated}</h5>
-                {/*<img src="/img/oscar.png" alt=""/>*/}
             </div>
         </div>
     );

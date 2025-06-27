@@ -22,6 +22,12 @@ const filmsHandler = [
         });
     }),
 
+    http.post("/api/films/:id/infoFilm", async ({request}) => {
+        const newFilm = await request.json();
+        infoFilmEntity.push(newFilm);
+        return HttpResponse.json(newFilm, {status: 200});
+    }),
+
     http.delete("/api/films/:id", ({params}) => {
         const listEntity = listFilmsEntity.filter(f => f.id !== Number(params.id));
 

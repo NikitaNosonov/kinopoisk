@@ -149,30 +149,6 @@ const InfoBlock = (props) => {
                     {props.infoFilm.details.aboutFilmEntity.time}
                 </h3>
             </div>
-            {/*<a href="#">*/}
-            {/*    <h5>Сиквелы, приквелы и ремейки ></h5>*/}
-            {/*</a>*/}
-            {/*<div className="prickvels">*/}
-            {/*    <div>*/}
-            {/*        <a href=""><img src="/img/prickvel1.png" alt=""/>*/}
-            {/*            <h4>Бэтмен: Начало</h4>*/}
-            {/*            <p>2005, боевик</p>*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <a href="">*/}
-            {/*            <img src="/img/prickvel2.png" alt=""/>*/}
-            {/*            <h4>Бэтмен: Рыцарь Готэма</h4>*/}
-            {/*            <p>2008, аниме</p>*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*        <a href=""><img src="/img/prickvel3.png" alt=""/>*/}
-            {/*            <h4>Темный Рыцарь: Возрождение...</h4>*/}
-            {/*            <p>2012, фантастика</p>*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     );
 };

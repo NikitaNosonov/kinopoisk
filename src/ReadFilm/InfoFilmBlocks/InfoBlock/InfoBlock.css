@@ -61,14 +61,6 @@
     padding: 2px 0;
 }
 
-.info-block h5 {
-    font-size: 21px;
-    font-weight: 800;
-    padding-top: 65px;
-    padding-bottom: 25px;
-    color: black;
-}
-
 .info-block .info .btn2 {
     margin-top: -12px;
 }
@@ -98,26 +90,4 @@
 .info-block .info h4 {
     border: 5px;
     font-size: 14px;
-}
-
-.info-block .prickvels {
-    display: flex;
-    justify-content: space-between;
-    width: 480px;
-}
-
-.info-block .prickvels div {
-    max-width: 155px;
-}
-
-.info-block .prickvels h4 {
-    color: black;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 5px 0;
-}
-
-.info-block .prickvels p {
-    font-weight: 400;
-    font-size: 13px;
 }

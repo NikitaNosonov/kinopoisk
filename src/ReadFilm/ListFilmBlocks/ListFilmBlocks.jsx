@@ -20,12 +20,21 @@ const ListFilmBlocks = () => {
         }
     );
 
-
     function idByNewFilm() {
         let col = 0;
         for (let i = 0; i < films.length; i++) {
             if (films[i].id > col) {
                 col = films[i].id;
+            }
+        }
+        return col;
+    }
+
+    function idByNewAboutFilm() {
+        let col = 0;
+        for (let i = 0; i < films.length; i++) {
+            if (films[i].infoFilmId > col) {
+                col = films[i].infoFilmId;
             }
         }
         return col;
@@ -40,7 +49,11 @@ const ListFilmBlocks = () => {
                     <Dialog open={addModal}>
                         <DialogContent onClick={(e) => e.stopPropagation()}>
                             <DialogTitle style={{marginTop: -25}} align="center">Создание фильма</DialogTitle>
-                            <ModalAddFilm films={films} setAddModal={setAddModal} index={idByNewFilm}/>
+                            <ModalAddFilm
+                                films={films}
+                                setAddModal={setAddModal}
+                                index={idByNewFilm}
+                                indexChild={idByNewAboutFilm}/>
                         </DialogContent>
                     </Dialog>
                 </div>
