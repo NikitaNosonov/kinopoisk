@@ -1,0 +1,15 @@
+.pageAddFilm {
+    background: rgb(255, 255, 255);
+    margin: 70px 60px;
+}
+
+
+.pageAddFilm .flexPage {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pageAddFilm .blockPage {
+    margin: 50px 0;
+    margin-left: 1100px;
+}

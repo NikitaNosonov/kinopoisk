@@ -1,0 +1,74 @@
+.addInfoBlock {
+    width: 580px;
+    padding: 10px 0;
+}
+
+
+
+.addInfoBlock p {
+    top: 12px;
+    color: rgb(157, 156, 156);
+    font-size: 18px;
+    font-weight: 200;
+    margin-bottom: 10px;
+
+}
+
+.addInfoBlock .btns {
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.addInfoBlock .btn {
+    background: rgb(221, 221, 221);
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    width: 300px;
+    height: 45px;
+    border: 0;
+    transition: all 500ms ease;
+}
+
+.addInfoBlock .btn1 {
+    background: rgb(221, 221, 221);
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 90px;
+    font-size: 15px;
+    font-weight: 500;
+    width: 55px;
+    height: 45px;
+    border: 0;
+    transition: all 500ms ease;
+}
+
+.addInfoBlock .btn:hover,
+.addInfoBlock .btn1:hover {
+    background: rgb(202, 202, 202);
+    transform: scale(1.1)
+}
+
+.addInfoBlock .info {
+    display: flex;
+    padding: 10px 0;
+}
+
+.addInfoBlock .info .btn2 {
+    margin-top: -12px;
+}
+
+.addInfoBlock .info h2 {
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.addInfoBlock .info h3 {
+    color: rgb(157, 156, 156);
+    font-weight: 300;
+    font-size: 14px;
+}
