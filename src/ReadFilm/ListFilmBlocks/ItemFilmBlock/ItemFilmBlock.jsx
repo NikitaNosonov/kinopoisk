@@ -2,7 +2,6 @@ import React from 'react';
 import './ItemFilmBlock.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add';
 import {IconButton, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {Link} from 'react-router-dom';
 import {useQueryClient} from "@tanstack/react-query";
@@ -16,10 +15,10 @@ const ItemFilmBlock = (props) => {
 
     const remove = async (id, event) => {
         event.preventDefault();
-        console.log(id);
         debugger;
         fetch(`/api/films/${id}`, {method: 'DELETE'}).then(fetchTask);
     }
+
 
     return (
         <div className="ItemFilmBlock">
@@ -41,14 +40,15 @@ const ItemFilmBlock = (props) => {
                                 <TableCell className="content">
                                     <h1>{props.films.firstName}</h1>
                                     <h2>{props.films.secondName}</h2>
-                                    <p>
-                                        {props.films.description1}<br></br>{props.films.description2}
-                                    </p>
+                                    <p>{props.films.description}</p>
                                 </TableCell>
                                 <TableCell className="grade">
                                     <p>{props.films.grade}</p>
                                 </TableCell>
                                 <TableCell className="btns">
+                                    <IconButton className="btn1">
+                                        <EditIcon onClick={(e) => props.edit(props.films, e)}/>
+                                    </IconButton>
                                     <IconButton className="btn1">
                                         <DeleteIcon fontSize="small"
                                                     onClick={(e) => remove(props.films.id, e)}/>
@@ -60,7 +60,7 @@ const ItemFilmBlock = (props) => {
                 </TableContainer>
             </Link>
         </div>
-);
+    );
 };
 
 export default ItemFilmBlock;

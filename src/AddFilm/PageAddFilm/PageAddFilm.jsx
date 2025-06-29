@@ -3,13 +3,14 @@ import './PageAddFilm.css'
 import AddPhotoBlock from "./AddPhotoBlock/AddPhotoBlock";
 import AddInfoBlock from "./AddInfoBlock/AddInfoBlock";
 import AddActorsBlock from "./AddActorsBlock/AddActorsBlock";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {Button} from "@mui/material";
 
 const PageAddFilm = () => {
     const {id} = useParams();
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
 
     const {data: infoFilm, isLoading} = useQuery({
             queryKey: ['infoFilm', id],
@@ -22,7 +23,8 @@ const PageAddFilm = () => {
     }
     const [film, setFilm] = useState(
         {
-            title: '', description: '', aboutFilmEntity:
+            title: '', description: '', grades: '', review: '', starring: '', colStarring: '',
+            rolesDuplicated: '', colRolesDuplicated: '',  aboutFilmEntity:
                 {
                     yearProd: '',
                     country: '',
@@ -49,7 +51,8 @@ const PageAddFilm = () => {
                 }
         });
 
-    console.log(infoFilm);
+    const starring = film.starring.split(',');
+    const duplicated = film.rolesDuplicated.split(',')
 
     function addNewFilmInfo() {
         fetch(`/api/films/${id}/infoFilm`, {
@@ -62,6 +65,12 @@ const PageAddFilm = () => {
                 listFilmsEntityId: infoFilm.id,
                 title: film.title,
                 description: film.description,
+                grades: film.grades + " оценок",
+                review: film.review + " рецензий",
+                starring: starring,
+                colStarring: film.colStarring + " актера",
+                rolesDuplicated: duplicated,
+                colRolesDuplicated: film.colRolesDuplicated + " актера",
                 aboutFilmEntity: {
                     yearProd: film.aboutFilmEntity.yearProd,
                     country: film.aboutFilmEntity.country,
@@ -91,7 +100,8 @@ const PageAddFilm = () => {
         })
             .then(fetchTask)
         setFilm({
-            title: '', description: '', aboutFilmEntity:
+            title: '', description: '', grades: '', review: '', starring: '', colStarring: '',
+            rolesDuplicated: '', colRolesDuplicated: '',  aboutFilmEntity:
                 {
                     yearProd: '',
                     country: '',
@@ -117,6 +127,7 @@ const PageAddFilm = () => {
                     time: ''
                 }
         })
+        navigate('/listFilms');
     }
 
 

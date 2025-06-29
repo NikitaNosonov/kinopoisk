@@ -18,19 +18,6 @@ const ModalAddFilm = (props) => {
         queryClient.invalidateQueries(['films']);
     }
 
-    // const fetchAddAboutFilm = (id) => {
-    //     fetch(`/api/films/${id}/infoFilm`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             id: indexChild,
-    //             listFilmsEntityId: index,
-    //         })
-    //     })
-    // }
-
     const addNewFilm = (e) => {
         e.preventDefault()
         fetch(`/api/films`, {
