@@ -12,11 +12,29 @@ const filmsHandler = [
         return HttpResponse.json(newFilm, {status: 200});
     }),
 
+    http.delete("/api/films/:id", ({params}) => {
+        const listEntity = listFilmsEntity.findIndex(f => f.id === Number(params.id));
+        listFilmsEntity.splice(listEntity, 1)
+        return new HttpResponse({status: 200});
+    }),
+
+    http.put("/api/films/:id", async ({request, params}) => {
+        const updatedData = await request.json();
+        const filmIndex = listFilmsEntity.findIndex(item => item.id === Number(params.id));
+
+        listFilmsEntity[filmIndex] = {
+            ...listFilmsEntity[filmIndex],
+            ...updatedData
+        };
+
+        return HttpResponse.json(listFilmsEntity[filmIndex], {status: 200});
+    }),
+
     http.get("/api/films/:id/infoFilm", ({params}) => {
         const listEntity = listFilmsEntity.find(e => e.id === Number(params.id));
         const infoEntity = infoFilmEntity.find(e => e.id === listEntity.infoFilmId);
 
-        return Response.json({
+        return HttpResponse.json({
             ...listEntity,
             details: infoEntity
         });
@@ -28,11 +46,20 @@ const filmsHandler = [
         return HttpResponse.json(newFilm, {status: 200});
     }),
 
-    http.delete("/api/films/:id", ({params}) => {
-        const listEntity = listFilmsEntity.filter(f => f.id !== Number(params.id));
+    http.put("/api/films/:id/infoFilm", async ({request, params}) => {
+        const updatedData = await request.json();
 
-        listFilmsEntity.splice(listEntity, 1)
-        return new HttpResponse({success: true, message: "Film deleted successfully"});
+        const listFilm = listFilmsEntity.find(item => item.id === Number(params.id));
+        const infoFilmIndex = infoFilmEntity.findIndex(item => item.id === listFilm.infoFilmId);
+
+        infoFilmEntity[infoFilmIndex] = {
+            ...infoFilmEntity[infoFilmIndex],
+            ...updatedData,
+            id: listFilm.infoFilmId,
+            listFilmsEntityId: listFilm.id
+        };
+
+        return HttpResponse.json(infoFilmEntity[infoFilmIndex], {status: 200});
     }),
 ]
 

@@ -5,6 +5,7 @@ import ListFilmBlocks from "./ReadFilm/ListFilmBlocks/ListFilmBlocks";
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import InfoFilmBlocks from "./ReadFilm/InfoFilmBlocks/InfoFilmBlocks";
 import PageAddFilm from "./AddFilm/PageAddFilm/PageAddFilm";
+import PageEditFilm from "./EditFilm/PageEditFilm/PageEditFilm";
 
 const NavbarLayout = () => {
     return (
@@ -25,6 +26,7 @@ function App() {
                   <Route path="listFilms" element={<ListFilmBlocks />} />
                   <Route path="addFilm/:id" element={<PageAddFilm />} />
                   <Route path="film/:id" element={<InfoFilmBlocks />} />
+                  <Route path="editFilm/:id" element={<PageEditFilm />} />
               </Route>
           </Routes>
       </BrowserRouter>

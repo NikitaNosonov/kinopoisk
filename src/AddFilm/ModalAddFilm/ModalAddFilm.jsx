@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const ModalAddFilm = (props) => {
     const [film, setFilm] = useState(
-        {firstName: '', secondName: '', description1: '', grade: '' });
+        {firstName: '', secondName: '', description: '', grade: '' });
 
     const queryClient = useQueryClient();
     const navigate = useNavigate();
@@ -30,12 +30,12 @@ const ModalAddFilm = (props) => {
                 infoFilmId: indexChild,
                 firstName: film.firstName,
                 secondName: film.secondName,
-                description1: film.description1,
+                description: film.description,
                 grade: film.grade,
             })
         })
             .then(fetchTask)
-        setFilm({ firstName: '', secondName: '', description1: '', grade: '' })
+        setFilm({ firstName: '', secondName: '', description: '', grade: '' })
         navigate(`addFilm/${index}`)
     }
 
@@ -55,8 +55,8 @@ const ModalAddFilm = (props) => {
                 placeholder="Полное название"/>
             <TextField
                 className="input"
-                value={film.description1}
-                onChange={e => setFilm({...film, description1: e.target.value})}
+                value={film.description}
+                onChange={e => setFilm({...film, description: e.target.value})}
                 type="text"
                 placeholder="Краткое описание"/>
             <TextField

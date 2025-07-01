@@ -1,8 +1,5 @@
 import React from 'react';
 import './InfoBlock.css'
-import EditIcon from "@mui/icons-material/Edit";
-import {IconButton} from "@mui/material";
-
 
 const InfoBlock = (props) => {
 

@@ -15,7 +15,6 @@ const ItemFilmBlock = (props) => {
 
     const remove = async (id, event) => {
         event.preventDefault();
-        debugger;
         fetch(`/api/films/${id}`, {method: 'DELETE'}).then(fetchTask);
     }
 

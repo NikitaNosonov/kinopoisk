@@ -3,7 +3,8 @@ import {Button, TextField} from "@mui/material";
 import './AddActorsBlock.css'
 
 const AddActorsBlock = (props) => {
-    return (<div className="addActorsBlock">
+    return (
+        <div className="addActorsBlock">
         <TextField
             value={props.film.grades}
             onChange={(e => props.setFilm({...props.film, grades: e.target.value}))}
@@ -43,7 +44,6 @@ const AddActorsBlock = (props) => {
                 size="small"
                 placeholder="Количество актеров"
                 style={{marginTop: '15px', marginBottom: '20px'}}/>
-
         </div>
     </div>);
 };

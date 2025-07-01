@@ -68,7 +68,9 @@ const ListFilmBlocks = () => {
                             <ModalEditFilm
                                 films={films}
                                 setEditModal={setEditModal}
-                                editedFilm={editedFilm}/>
+                                editedFilm={editedFilm}
+                                setEditedFilm={setEditedFilm}
+                                index={idByNewFilm}/>
                         </DialogContent>
                     </Dialog>
                     <Dialog open={addModal}>
