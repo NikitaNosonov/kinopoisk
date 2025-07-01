@@ -8,6 +8,8 @@ const ModalAddFilm = (props) => {
     const [film, setFilm] = useState(
         {firstName: '', secondName: '', description: '', grade: '' });
 
+    const [error, setError] = useState(null);
+
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
@@ -20,6 +22,9 @@ const ModalAddFilm = (props) => {
 
     const addNewFilm = (e) => {
         e.preventDefault()
+        if (!film.firstName || !film.secondName || !film.description || !film.grade) {
+            setError('**Поле обязательно для заполнения**');
+        } else {
         fetch(`/api/films`, {
             method: 'POST',
             headers: {
@@ -37,6 +42,7 @@ const ModalAddFilm = (props) => {
             .then(fetchTask)
         setFilm({ firstName: '', secondName: '', description: '', grade: '' })
         navigate(`addFilm/${index}`)
+            }
     }
 
     return (
@@ -47,24 +53,28 @@ const ModalAddFilm = (props) => {
                 onChange={e => setFilm({...film, firstName: e.target.value})}
                 type="text"
                 placeholder="Заголовок"/>
+            {(!film.firstName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
                 className="input"
                 value={film.secondName}
                 onChange={e => setFilm({...film, secondName: e.target.value})}
                 type="text"
                 placeholder="Полное название"/>
+            {(!film.secondName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
                 className="input"
                 value={film.description}
                 onChange={e => setFilm({...film, description: e.target.value})}
                 type="text"
                 placeholder="Краткое описание"/>
+            {(!film.description) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
                 className="input"
                 value={film.grade}
                 onChange={e => setFilm({...film, grade: e.target.value})}
                 type="text"
                 placeholder="Оценка"/>
+            {(!film.grade) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <Button variant="contained" color="primary" type="submit" onClick={addNewFilm}>Далее</Button>
         </div>
     );

@@ -19,6 +19,7 @@ const EditInfoBlock = (props) => {
                     size="small"
                     placeholder="Название"/>
             </div>
+            {(!props.film.details?.title) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <TextField
                 name={props.film.details?.description}
                 value={props.film.details?.description || ''}
@@ -31,6 +32,7 @@ const EditInfoBlock = (props) => {
                 type="text"
                 size="small"
                 placeholder="Описание"/>
+            {(!props.film.details?.description) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <div className="btns">
                 <button className="btn" style={{width: "150px"}}>Буду смотреть</button>
                 <button className="btn1">...</button>

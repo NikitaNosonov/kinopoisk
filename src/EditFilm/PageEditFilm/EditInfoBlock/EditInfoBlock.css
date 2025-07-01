@@ -3,7 +3,11 @@
     padding: 10px 0;
 }
 
-
+.editInfoBlock .alertDanger {
+    color: red;
+    font-weight: normal;
+    font-size: 10px;
+}
 
 .editInfoBlock p {
     top: 12px;

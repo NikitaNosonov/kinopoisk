@@ -13,6 +13,11 @@
     margin-bottom: 10px;
 
 }
+.addInfoBlock .alertDanger {
+    color: red;
+    font-weight: normal;
+    font-size: 10px;
+}
 
 .addInfoBlock .btns {
     display: block;

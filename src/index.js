@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import Login from './Login/Login';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -16,6 +17,6 @@ async function enableMocking () {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 enableMocking().then(() => {
     root.render(<QueryClientProvider client={queryClient}>
-        <App />
+        <Login />
     </QueryClientProvider>);
 })

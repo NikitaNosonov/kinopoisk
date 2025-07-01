@@ -1,0 +1,26 @@
+.login {
+    display: grid;
+    place-items: center;
+}
+
+.login .block {
+    width: 500px;
+    height: 300px;
+    background: white;
+    margin: 200px 470px;
+    padding: 20px 0;
+    border-radius: 15px;
+}
+
+.login .block .title {
+    font-weight: normal;
+    font-size: 30px;
+}
+
+.login .block .input {
+    width: 450px;
+}
+
+.login .block .btn {
+    width: 120px;
+}
