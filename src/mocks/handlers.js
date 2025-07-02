@@ -14,7 +14,9 @@ const filmsHandler = [
 
     http.delete("/api/films/:id", ({params}) => {
         const listEntity = listFilmsEntity.findIndex(f => f.id === Number(params.id));
+        const filmEntity = infoFilmEntity.findIndex(e => e.id === listEntity.infoFilmId);
         listFilmsEntity.splice(listEntity, 1)
+        infoFilmEntity.splice(filmEntity, 1)
         return new HttpResponse({status: 200});
     }),
 

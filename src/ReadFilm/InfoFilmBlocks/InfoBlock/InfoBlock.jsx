@@ -6,7 +6,7 @@ const InfoBlock = (props) => {
     return (
         <div className="info-block">
             <h1>{props.infoFilm.details.title}</h1>
-            <p>{props.infoFilm.details.description}</p>
+            <p>{props.infoFilm.details.fullDescription}</p>
             <div className="btns">
                 <button className="btn" style={{width: "150px"}}>Буду смотреть</button>
                 <button className="btn1">...</button>

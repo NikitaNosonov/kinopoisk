@@ -15,7 +15,7 @@ export const infoFilmEntity = [
         id: 101,
         listFilmsEntityId: 1,
         title: 'Темный рыцарь (2008)',
-        description: 'The Dark Knight18+',
+        fullDescription: 'The Dark Knight18+',
         gradeImg: '',
         grades: '763 108 оценок',
         review: '1059 рецензий',

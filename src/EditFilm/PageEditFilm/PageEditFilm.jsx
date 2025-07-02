@@ -17,7 +17,7 @@ const PageEditFilm = () => {
             queryFn: () => fetch(`/api/films/${id}/infoFilm`).then(res => res.json())
         });
 
-        const [film, setFilm] = useState(infoFilm || {details: {}, aboutFilmEntity: {}});
+        const [film, setFilm] = useState(infoFilm || {details: {}});
 
         useEffect(() => {
             if (infoFilm) {
@@ -36,8 +36,18 @@ const PageEditFilm = () => {
             film.details.rolesDuplicated = film.details.rolesDuplicated.split(',')
         }
 
+        const updatePhoto = () => {
+            fetch(`/api/films/${film.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(film),
+            }).then(fetchTask);
+        }
+
         const editFilm = (e) => {
-            if (!film.details.title || !film.details.description) {
+            if (!film.details.title || !film.details.fullDescription) {
                 setError('**Поле обязательно для заполнения**')
             } else {
                 e.preventDefault()
@@ -48,7 +58,8 @@ const PageEditFilm = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(film.details),
-                }).then(fetchTask);
+                }).then(fetchTask)
+                    .then(updatePhoto);
                 navigate(`/listFilms`);
             }
         };

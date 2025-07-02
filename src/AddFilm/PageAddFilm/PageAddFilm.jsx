@@ -23,7 +23,7 @@ const PageAddFilm = () => {
     }
     const [film, setFilm] = useState(
         {
-            title: '', description: '', grades: '', review: '', starring: '', colStarring: '',
+            title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
             rolesDuplicated: '', colRolesDuplicated: '',  aboutFilmEntity:
                 {
                     yearProd: '',
@@ -56,7 +56,7 @@ const PageAddFilm = () => {
     const [error, setError] = useState('')
 
     function addNewFilmInfo() {
-        if (!film.title || !film.description) {
+        if (!film.title || !film.fullDescription) {
             setError('**Поле обязательно для заполнения**')
         } else {
             fetch(`/api/films/${id}/infoFilm`, {
@@ -68,7 +68,7 @@ const PageAddFilm = () => {
                     id: infoFilm.infoFilmId,
                     listFilmsEntityId: infoFilm.id,
                     title: film.title,
-                    description: film.description,
+                    fullDescription: film.fullDescription,
                     grades: film.grades ? film.grades + ' оценок' : '— оценок',
                     review: film.review ? film.review + ' рецензий' : '— рецензий',
                     starring: starring ? starring : '—',
@@ -104,7 +104,7 @@ const PageAddFilm = () => {
             })
                 .then(fetchTask)
             setFilm({
-                title: '', description: '', grades: '', review: '', starring: '', colStarring: '',
+                title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
                 rolesDuplicated: '', colRolesDuplicated: '', aboutFilmEntity:
                     {
                         yearProd: '',
@@ -141,7 +141,7 @@ const PageAddFilm = () => {
         : (
             <div className="pageAddFilm">
                 <div className="flexPage">
-                <AddPhotoBlock film={film} setFilm={setFilm}/>
+                <AddPhotoBlock film={film} setFilm={setFilm} infoFilm={infoFilm} />
                 <AddInfoBlock error={error} film={film} setFilm={setFilm}/>
                 <AddActorsBlock error={error} film={film} setFilm={setFilm}/>
                 </div>

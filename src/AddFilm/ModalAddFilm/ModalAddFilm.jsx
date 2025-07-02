@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const ModalAddFilm = (props) => {
     const [film, setFilm] = useState(
-        {firstName: '', secondName: '', description: '', grade: '' });
+        {poster: '', firstName: '', secondName: '', description: '', grade: ''});
 
     const [error, setError] = useState(null);
 
@@ -20,29 +20,46 @@ const ModalAddFilm = (props) => {
         queryClient.invalidateQueries(['films']);
     }
 
+    const onChange = (e) => {
+        let file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = _handleReaderLoaded;
+            reader.readAsBinaryString(file);
+        }
+    };
+
+    const _handleReaderLoaded = (e) => {
+        console.log("file uploaded 2: ", e);
+        let binaryString = e.target.result;
+        setFilm({...film, poster: "data:image;base64," + btoa(binaryString)});
+    };
+
     const addNewFilm = (e) => {
         e.preventDefault()
         if (!film.firstName || !film.secondName || !film.description || !film.grade) {
             setError('**Поле обязательно для заполнения**');
         } else {
-        fetch(`/api/films`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: index,
-                infoFilmId: indexChild,
-                firstName: film.firstName,
-                secondName: film.secondName,
-                description: film.description,
-                grade: film.grade,
+            fetch(`/api/films`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    poster: film.poster,
+                    id: index,
+                    infoFilmId: indexChild,
+                    firstName: film.firstName,
+                    secondName: film.secondName,
+                    description: film.description,
+                    grade: film.grade,
+                })
             })
-        })
-            .then(fetchTask)
-        setFilm({ firstName: '', secondName: '', description: '', grade: '' })
-        navigate(`addFilm/${index}`)
-            }
+                .then(fetchTask)
+            setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
+            navigate(`addFilm/${index}`)
+        }
     }
 
     return (
@@ -75,6 +92,18 @@ const ModalAddFilm = (props) => {
                 type="text"
                 placeholder="Оценка"/>
             {(!film.grade) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+            <div className='poster'>
+                <i>Добавить постер: </i>
+                <input
+                    type="file"
+                    name="image"
+                    id="file"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={e => onChange(e)}
+                />
+            </div>
+            {(!film.poster) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+            {/*{film.poster != null && <img className='.img' src={film.poster} alt=''/>}*/}
             <Button variant="contained" color="primary" type="submit" onClick={addNewFilm}>Далее</Button>
         </div>
     );

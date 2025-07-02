@@ -5,6 +5,17 @@
     justify-content: center;
 }
 
+.ModalAddFilm .poster {
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 7px 0;
+}
+
+.ModalAddFilm .poster input {
+    margin-left: 10px;
+}
+
 .ModalAddFilm .alertDanger {
     color: red;
     font-weight: normal;

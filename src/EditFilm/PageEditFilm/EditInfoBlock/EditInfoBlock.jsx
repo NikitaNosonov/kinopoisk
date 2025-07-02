@@ -21,18 +21,18 @@ const EditInfoBlock = (props) => {
             </div>
             {(!props.film.details?.title) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <TextField
-                name={props.film.details?.description}
-                value={props.film.details?.description || ''}
+                name={props.film.details?.fullDescription}
+                value={props.film.details?.fullDescription || ''}
                 onChange={(e => props.setFilm({
                     ...props.film, details: {
                         ...props.film.details,
-                        description: e.target.value
+                        fullDescription: e.target.value
                     }
                 }))}
                 type="text"
                 size="small"
                 placeholder="Описание"/>
-            {(!props.film.details?.description) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
+            {(!props.film.details?.fullDescription) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <div className="btns">
                 <button className="btn" style={{width: "150px"}}>Буду смотреть</button>
                 <button className="btn1">...</button>

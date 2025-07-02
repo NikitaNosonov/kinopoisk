@@ -14,12 +14,12 @@ const AddInfoBlock = (props) => {
             </div>
             {(!props.film.title) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <TextField
-                value={props.film.description}
-                onChange={(e => props.setFilm({...props.film, description: e.target.value}))}
+                value={props.film.fullDescription}
+                onChange={(e => props.setFilm({...props.film, fullDescription: e.target.value}))}
                 type="text"
                 size="small"
                 placeholder="Описание"/>
-            {(!props.film.description) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
+            {(!props.film.fullDescription) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <div className="btns">
                 <button className="btn" style={{width: "150px"}}>Буду смотреть</button>
                 <button className="btn1">...</button>
