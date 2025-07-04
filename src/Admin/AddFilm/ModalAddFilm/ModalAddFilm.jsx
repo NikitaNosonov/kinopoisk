@@ -31,7 +31,6 @@ const ModalAddFilm = (props) => {
     };
 
     const _handleReaderLoaded = (e) => {
-        console.log("file uploaded 2: ", e);
         let binaryString = e.target.result;
         setFilm({...film, poster: "data:image;base64," + btoa(binaryString)});
     };
@@ -41,7 +40,7 @@ const ModalAddFilm = (props) => {
         if (!film.firstName || !film.secondName || !film.description || !film.grade) {
             setError('**Поле обязательно для заполнения**');
         } else {
-            fetch(`/api/films`, {
+            fetch(`https://246b98815ac8edb9.mokky.dev/listFilms`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -49,11 +48,11 @@ const ModalAddFilm = (props) => {
                 body: JSON.stringify({
                     poster: film.poster,
                     id: index,
-                    infoFilmId: indexChild,
                     firstName: film.firstName,
                     secondName: film.secondName,
                     description: film.description,
                     grade: film.grade,
+                    details: {},
                 })
             })
                 .then(fetchTask)

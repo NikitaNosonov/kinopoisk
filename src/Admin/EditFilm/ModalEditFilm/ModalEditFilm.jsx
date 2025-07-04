@@ -18,8 +18,8 @@ const ModalEditFilm = (props) => {
             setError('**Поле обязательно для заполнения**')
         } else {
             e.preventDefault()
-            fetch(`api/films/${props.editedFilm.id}`, {
-                method: "PUT",
+            fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${props.editedFilm.id}`, {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },

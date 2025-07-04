@@ -1,38 +1,31 @@
-import React from 'react';
-import './EditInfoBlock.css'
-import {TextField} from "@mui/material";
-
-const EditInfoBlock = (props) => {
+import React, {useState} from 'react';
+import {Button, TextField} from "@mui/material";
+import './AddInfoBlock.css'
+const AddInfoBlock = (props) => {
     return (
-        <div className="editInfoBlock">
+        <div className="addInfoBlock">
             <div className="info">
                 <TextField
-                    name={props.film.details?.title}
-                    value={props.film.details?.title || ''}
+                    value={props.film.details.title}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
-                            title: e.target.value
-                        }
-                    }))}
+                            title: e.target.value}}))}
                     type="text"
                     size="small"
                     placeholder="Название"/>
             </div>
             {(!props.film.details?.title) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <TextField
-                name={props.film.details?.fullDescription}
-                value={props.film.details?.fullDescription || ''}
-                onChange={(e => props.setFilm({
+                value={props.film.details.fullDescription}
+                onChange={(e => props.setFilm(({
                     ...props.film, details: {
                         ...props.film.details,
-                        fullDescription: e.target.value
-                    }
-                }))}
+                        fullDescription: e.target.value}})))}
                 type="text"
                 size="small"
                 placeholder="Описание"/>
-            {(!props.film.details?.fullDescription) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
+            {(!props.film.details.fullDescription) ? props.error && <div className="alertDanger"><i>{props.error}</i></div> : <p></p>}
             <div className="btns">
                 <button className="btn" style={{width: "150px"}}>Буду смотреть</button>
                 <button className="btn1">...</button>
@@ -43,7 +36,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Год производства</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.yearProd}
+                    value={props.film.details.aboutFilmEntity.yearProd}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -60,7 +53,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Страна</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.country}
+                    value={props.film.details.aboutFilmEntity.country}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -77,7 +70,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Жанр</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.genre}
+                    value={props.film.details.aboutFilmEntity.genre}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -94,7 +87,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3 style={{paddingBottom: "10px"}}>Слоган</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.slogan}
+                    value={props.film.details.aboutFilmEntity.slogan}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -111,13 +104,13 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Режиссер</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.director}
+                    value={props.film.details.aboutFilmEntity.director}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
                             aboutFilmEntity: {
                                 ...props.film.details.aboutFilmEntity,
-                                yearProd: e.target.value
+                                director: e.target.value
                             }
                         }
                     }))}
@@ -128,7 +121,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Сценарий</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.script}
+                    value={props.film.details.aboutFilmEntity.script}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -145,7 +138,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Продюсер</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.producer}
+                    value={props.film.details.aboutFilmEntity.producer}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -162,7 +155,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Оператор</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.operator}
+                    value={props.film.details.aboutFilmEntity.operator}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -179,7 +172,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Композитор</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.composer}
+                    value={props.film.details.aboutFilmEntity.composer}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -196,7 +189,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Художник</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.artist}
+                    value={props.film.details.aboutFilmEntity.artist}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -213,7 +206,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Монтаж</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.montage}
+                    value={props.film.details.aboutFilmEntity.montage}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -230,7 +223,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Бюджет</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.budget}
+                    value={props.film.details.aboutFilmEntity.budget}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -247,7 +240,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Сборы в США</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.feesInTheUSA}
+                    value={props.film.details.aboutFilmEntity.feesInTheUSA}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -264,7 +257,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Сборы в мире</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.feesInTheWorld}
+                    value={props.film.details.aboutFilmEntity.feesInTheWorld}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -281,7 +274,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Сборы в России</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.feesInTheRussian}
+                    value={props.film.details.aboutFilmEntity.feesInTheRussian}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -298,7 +291,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Премьера в России</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.premiereInRussia}
+                    value={props.film.details.aboutFilmEntity.premiereInRussia}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -315,7 +308,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Премьера в мире</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.premiereInWorld}
+                    value={props.film.details.aboutFilmEntity.premiereInWorld}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -332,7 +325,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3 style={{paddingBottom: "10px"}}>Релиз на DVD</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.releaseOnDVD}
+                    value={props.film.details.aboutFilmEntity.releaseOnDVD}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -349,7 +342,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3 style={{paddingBottom: "10px"}}>Релиз на Blu-ray</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.releaseOnBluRay}
+                    value={props.film.details.aboutFilmEntity.releaseOnBluRay}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -366,7 +359,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Возраст</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.age}
+                    value={props.film.details.aboutFilmEntity.age}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -383,7 +376,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Рейтинг MPAA</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.ratingMPAA}
+                    value={props.film.details.aboutFilmEntity.ratingMPAA}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -400,7 +393,7 @@ const EditInfoBlock = (props) => {
             <div className="info">
                 <h3>Время</h3>
                 <TextField
-                    value={props.film.details?.aboutFilmEntity?.time}
+                    value={props.film.details.aboutFilmEntity.time}
                     onChange={(e => props.setFilm({
                         ...props.film, details: {
                             ...props.film.details,
@@ -418,4 +411,4 @@ const EditInfoBlock = (props) => {
     );
 };
 
-export default EditInfoBlock;
+export default AddInfoBlock;

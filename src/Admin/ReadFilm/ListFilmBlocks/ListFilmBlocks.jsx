@@ -20,9 +20,11 @@ const ListFilmBlocks = () => {
 
     const {data: films, isLoading} = useQuery({
             queryKey: ['films'],
-            queryFn: () => fetch('/api/films').then(res => res.json())
+            queryFn: () => fetch('https://246b98815ac8edb9.mokky.dev/listFilms').then(res => res.json())
         }
     );
+
+    console.log(films);
 
     const edit = async (film, event) => {
         event.preventDefault();
@@ -54,6 +56,7 @@ const ListFilmBlocks = () => {
     function closeModal(){
         setAddModal(false);
         setEditModal(false);
+
     }
 
     return isLoading

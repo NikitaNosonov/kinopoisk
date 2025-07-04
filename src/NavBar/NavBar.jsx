@@ -1,9 +1,11 @@
 import React from 'react';
 import './NavBar.css'
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 const NavBar = () => {
+    const navigate = useNavigate()
+
     return (
         <div className="nav">
             <header className="container">
@@ -20,7 +22,7 @@ const NavBar = () => {
                             <input type="text" placeholder="Фильмы, сериалы, персоны"/>
                         </li>
                         <li>
-                            <button className="btn0">Расширить<br/>подписку</button>
+                            <button className="btn0" onClick={() => navigate('/login')}>Выйти</button>
                         </li>
                     </ul>
                 </nav>

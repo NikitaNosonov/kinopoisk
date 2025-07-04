@@ -1,0 +1,157 @@
+import React, {useState} from 'react';
+import './PageAddFilm.css'
+import AddPhotoBlock from "./AddPhotoBlock/AddPhotoBlock";
+import AddInfoBlock from "./AddInfoBlock/AddInfoBlock";
+import AddActorsBlock from "./AddActorsBlock/AddActorsBlock";
+import {useNavigate, useParams} from "react-router-dom";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {Button} from "@mui/material";
+
+const PageAddFilm = () => {
+    const {id} = useParams();
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+    const {data: infoFilm, isLoading} = useQuery({
+            queryKey: ['infoFilm', id],
+            queryFn: () => fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`).then(res => res.json())
+        }
+    );
+
+    const fetchTask = () => {
+        queryClient.invalidateQueries(['films']);
+    }
+    const [film, setFilm] = useState(
+        {
+            details: {
+                title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
+                rolesDuplicated: '', colRolesDuplicated: '', aboutFilmEntity:
+                    {
+                        yearProd: '',
+                        country: '',
+                        genre: '',
+                        slogan: '',
+                        director: '',
+                        script: '',
+                        producer: '',
+                        operator: '',
+                        composer: '',
+                        artist: '',
+                        montage: '',
+                        budget: '',
+                        feesInTheUSA: '',
+                        feesInTheWorld: '',
+                        feesInTheRussian: '',
+                        premiereInRussia: '',
+                        premiereInWorld: '',
+                        releaseOnDVD: '',
+                        releaseOnBluRay: '',
+                        age: '',
+                        ratingMPAA: '',
+                        time: ''
+                    }
+            }
+        });
+
+    const starring = film.details.starring ? film.details.starring.split(',') : [];
+    const duplicated = film.details.rolesDuplicated ? film.details.rolesDuplicated.split(',') : [];
+    const [error, setError] = useState('')
+
+    function addNewFilmInfo() {
+        if (!film.details.title || !film.details.fullDescription) {
+            setError('**Поле обязательно для заполнения**')
+        } else {
+            fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    details: {
+                        title: film.details.title,
+                        fullDescription: film.details.fullDescription,
+                        grades: film.details.grades ? film.details.grades + ' оценок' : '— оценок',
+                        review: film.details.review ? film.details.review + ' рецензий' : '— рецензий',
+                        starring: starring,
+                        colStarring: film.details.colStarring ? film.details.colStarring + ' актера' : '—',
+                        rolesDuplicated: duplicated,
+                        colRolesDuplicated: film.details.colRolesDuplicated ? film.details.colRolesDuplicated + ' актера' : '—',
+                        aboutFilmEntity: {
+                            yearProd: film.details.aboutFilmEntity.yearProd ? film.details.aboutFilmEntity.yearProd : '—',
+                            country: film.details.aboutFilmEntity.country ? film.details.aboutFilmEntity.country : '—',
+                            genre: film.details.aboutFilmEntity.genre ? film.details.aboutFilmEntity.genre : '—',
+                            slogan: film.details.aboutFilmEntity.slogan ? film.details.aboutFilmEntity.slogan : '—',
+                            director: film.details.aboutFilmEntity.director ? film.details.aboutFilmEntity.director : '—',
+                            script: film.details.aboutFilmEntity.script ? film.details.aboutFilmEntity.script : '—',
+                            producer: film.details.aboutFilmEntity.producer ? film.details.aboutFilmEntity.producer : '—',
+                            operator: film.details.aboutFilmEntity.operator ? film.details.aboutFilmEntity.operator : '—',
+                            composer: film.details.aboutFilmEntity.composer ? film.details.aboutFilmEntity.composer : '—',
+                            artist: film.details.aboutFilmEntity.artist ? film.details.aboutFilmEntity.artist : '—',
+                            montage: film.details.aboutFilmEntity.montage ? film.details.aboutFilmEntity.montage : '—',
+                            budget: film.details.aboutFilmEntity.budget ? film.details.aboutFilmEntity.budget : '—',
+                            feesInTheUSA: film.details.aboutFilmEntity.feesInTheUSA ? film.details.aboutFilmEntity.feesInTheUSA : '—',
+                            feesInTheWorld: film.details.aboutFilmEntity.feesInTheWorld ? film.details.aboutFilmEntity.feesInTheWorld : '—',
+                            feesInTheRussian: film.details.aboutFilmEntity.feesInTheRussian ? film.details.aboutFilmEntity.feesInTheRussian : '—',
+                            premiereInRussia: film.details.aboutFilmEntity.premiereInRussia ? film.details.aboutFilmEntity.premiereInRussia : '—',
+                            premiereInWorld: film.details.aboutFilmEntity.premiereInWorld ? film.details.aboutFilmEntity.premiereInWorld : '—',
+                            releaseOnDVD: film.details.aboutFilmEntity.releaseOnDVD ? film.details.aboutFilmEntity.releaseOnDVD : '—',
+                            releaseOnBluRay: film.details.aboutFilmEntity.releaseOnBluRay ? film.details.aboutFilmEntity.releaseOnBluRay : '—',
+                            age: film.details.aboutFilmEntity.age ? film.details.aboutFilmEntity.age : '—',
+                            ratingMPAA: film.details.aboutFilmEntity.ratingMPAA ? film.details.aboutFilmEntity.ratingMPAA : '—',
+                            time: film.details.aboutFilmEntity.time ? film.details.aboutFilmEntity.time : '—',
+                        }
+                    }
+                })
+            })
+                .then(fetchTask)
+            setFilm({
+                details: {
+                    title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
+                    rolesDuplicated: '', colRolesDuplicated: '', aboutFilmEntity:
+                        {
+                            yearProd: '',
+                            country: '',
+                            genre: '',
+                            slogan: '',
+                            director: '',
+                            script: '',
+                            producer: '',
+                            operator: '',
+                            composer: '',
+                            artist: '',
+                            montage: '',
+                            budget: '',
+                            feesInTheUSA: '',
+                            feesInTheWorld: '',
+                            feesInTheRussian: '',
+                            premiereInRussia: '',
+                            premiereInWorld: '',
+                            releaseOnDVD: '',
+                            releaseOnBluRay: '',
+                            age: '',
+                            ratingMPAA: '',
+                            time: ''
+                        }
+                }
+            })
+            navigate('/admin/listFilms');
+        }
+    }
+
+
+    return isLoading ?
+        console.log('Loading...')
+        : (
+            <div className="pageAddFilm">
+                <div className="flexPage">
+                    <AddPhotoBlock film={film} setFilm={setFilm} infoFilm={infoFilm}/>
+                    <AddInfoBlock error={error} film={film} setFilm={setFilm}/>
+                    <AddActorsBlock error={error} film={film} setFilm={setFilm}/>
+                </div>
+                <Button className="blockPage" variant="contained" color="success" type="submit"
+                        onClick={addNewFilmInfo}>Добавить фильм</Button>
+            </div>
+        );
+};
+
+export default PageAddFilm;
