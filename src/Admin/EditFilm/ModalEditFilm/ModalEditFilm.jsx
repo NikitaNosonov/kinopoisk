@@ -21,6 +21,7 @@ const ModalEditFilm = (props) => {
             fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${props.editedFilm.id}`, {
                 method: "PATCH",
                 headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(props.editedFilm),

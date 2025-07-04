@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import {Button, TextField} from "@mui/material";
-import './Login.css'
+import './Register.css'
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
 
 
-const Login = () => {
+const Register = () => {
     const [dataUser, setDataUser] = useState({username: "", password: "",});
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const login = async (e) => {
+    const register = async (e) => {
         e.preventDefault();
         if (!dataUser.username || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
-            const response = await fetch('https://246b98815ac8edb9.mokky.dev/auth', {
+            const response = await fetch('https://246b98815ac8edb9.mokky.dev/register', {
                 method: 'POST',
                 headers: {
                     Accept: "application/json",
@@ -23,18 +23,15 @@ const Login = () => {
                 },
                 body: JSON.stringify({
                     username: dataUser.username,
-                    password: dataUser.password
+                    password: dataUser.password,
+                    role: "user"
                 }),
             });
             const res = await response.json()
-            localStorage.setItem('token', res.token)
-            const token = jwtDecode(res.token)
 
-            if (token.role === 'admin' && token.username === dataUser.username) {
-                navigate('/admin/listFilms')
-            } else if (token.role === 'user' && token.username === dataUser.username) {
-                navigate('/listFilms')
-            }
+            console.log(res)
+
+            navigate('/login')
             setDataUser({username: "", password: "",});
         }
     }
@@ -42,30 +39,29 @@ const Login = () => {
     return (
         <div className='login'>
             <div className='login block'>
-                <div className='title'>ВХОД</div>
+                <div className='title'>Заполните учетные данные</div>
                 <TextField
                     value={dataUser.username}
                     onChange={(e) => setDataUser({...dataUser, username: e.target.value})}
                     className='input'
                     type='text'
-                    placeholder='Логин'/>
+                    placeholder='Придумайте логин'/>
                 {(!dataUser.username) ? error && <div className="alertDanger"><i>{error}</i></div> : null}
                 <TextField
                     value={dataUser.password}
                     onChange={(e) => setDataUser({...dataUser, password: e.target.value})}
                     className='input'
                     type='password'
-                    placeholder='Пароль'/>
+                    placeholder='Придумайте пароль'/>
                 {(!dataUser.password) ? error && <div className="alertDanger"><i>{error}</i></div> : null}
                 <div className='btns'>
                     <Button className='btn1' variant="contained" color="primary" type="submit"
-                            onClick={login}>Войти</Button>
-                    <Button className='btn2' variant="contained" color="primary" type="submit"
-                            onClick={() => navigate('/login/register')}>Зарегистрироваться</Button>
-                </div>
-            </div>
+                            onClick={register}>Зарегистрироваться</Button>
+                    <Button className='btn2' variant="contained" color="error" type="submit"
+                            onClick={() => navigate('/login')}>Назад</Button>
+                </div>            </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

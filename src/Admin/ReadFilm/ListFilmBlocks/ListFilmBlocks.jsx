@@ -20,7 +20,11 @@ const ListFilmBlocks = () => {
 
     const {data: films, isLoading} = useQuery({
             queryKey: ['films'],
-            queryFn: () => fetch('https://246b98815ac8edb9.mokky.dev/listFilms').then(res => res.json())
+            queryFn: () => fetch('https://246b98815ac8edb9.mokky.dev/listFilms', {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(res => res.json())
         }
     );
 

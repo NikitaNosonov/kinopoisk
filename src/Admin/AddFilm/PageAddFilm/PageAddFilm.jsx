@@ -14,7 +14,11 @@ const PageAddFilm = () => {
 
     const {data: infoFilm, isLoading} = useQuery({
             queryKey: ['infoFilm', id],
-            queryFn: () => fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`).then(res => res.json())
+            queryFn: () => fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(res => res.json())
         }
     );
 
@@ -64,6 +68,7 @@ const PageAddFilm = () => {
             fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
                 method: 'PATCH',
                 headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({

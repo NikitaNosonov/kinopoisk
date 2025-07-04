@@ -15,7 +15,13 @@ const ItemFilmBlock = (props) => {
 
     const remove = async (id, event) => {
         event.preventDefault();
-        fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {method: 'DELETE'}).then(fetchTask);
+        fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                },
+                method: 'DELETE'
+            }).then(fetchTask);
     }
 
 
