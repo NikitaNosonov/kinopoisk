@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import './ListFilmBlocksUser.css'
 import ItemFilmBlocksUser from "./ItemFilmBlocks/ItemFilmBlocksUser";
 import {useQuery} from '@tanstack/react-query';
