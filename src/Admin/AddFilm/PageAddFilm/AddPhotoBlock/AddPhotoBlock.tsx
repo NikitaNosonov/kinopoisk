@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './AddPhotoBlock.css'
+import {Film} from "../../../../shared/typesData";
 
-const AddPhotoBlock = (props) => {
+interface AddPhotoBlockProps {
+    infoFilm?: Film,
+}
+
+const AddPhotoBlock: React.FC<AddPhotoBlockProps> = ({infoFilm}) => {
     return (
         <div className="addPhotoBlock">
             <div className="block">
-                <img src={props.infoFilm.poster} alt=''/>
+                <img src={infoFilm?.poster} alt=''/>
                 <button className="btn">Добавить папку</button>
             </div>
         </div>

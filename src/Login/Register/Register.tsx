@@ -1,25 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, TextField} from "@mui/material";
 import './Register.css'
 import {useNavigate} from "react-router-dom";
-import {jwtDecode} from 'jwt-decode';
 
-
-const Register = () => {
-    const [dataUser, setDataUser] = useState({username: "", password: "",});
-    const [error, setError] = useState('');
+const Register: React.FC = () => {
+    const [dataUser, setDataUser] = React.useState({username: '', password: '',});
+    const [error, setError] = React.useState('');
     const navigate = useNavigate();
 
-    const register = async (e) => {
+    const register = async (e: React.MouseEvent) => {
         e.preventDefault();
         if (!dataUser.username || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
-            const response = await fetch('https://246b98815ac8edb9.mokky.dev/register', {
-                method: 'POST',
+            const response =await fetch("https://246b98815ac8edb9.mokky.dev/register", {
+                method: "POST",
                 headers: {
                     Accept: "application/json",
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     username: dataUser.username,
@@ -59,7 +57,8 @@ const Register = () => {
                             onClick={register}>Зарегистрироваться</Button>
                     <Button className='btn2' variant="contained" color="error" type="submit"
                             onClick={() => navigate('/login')}>Назад</Button>
-                </div>            </div>
+                </div>
+            </div>
         </div>
     );
 };

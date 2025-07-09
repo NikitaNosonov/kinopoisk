@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, TextField} from "@mui/material";
 import './Login.css'
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
+import {token} from '../shared/typesData'
 
 
-const Login = () => {
-    const [dataUser, setDataUser] = useState({username: "", password: "",});
-    const [error, setError] = useState('');
+const Login: React.FC = () => {
+    const [dataUser, setDataUser] = React.useState({username: "", password: "",});
+    const [error, setError] = React.useState('');
     const navigate = useNavigate();
 
-    const login = async (e) => {
+    const login = async (e: React.MouseEvent) => {
         e.preventDefault();
         if (!dataUser.username || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
@@ -28,7 +29,7 @@ const Login = () => {
             });
             const res = await response.json()
             localStorage.setItem('token', res.token)
-            const token = jwtDecode(res.token)
+            const token = jwtDecode<token>(res.token)
 
             if (token.role === 'admin' && token.username === dataUser.username) {
                 navigate('/admin/listFilms')

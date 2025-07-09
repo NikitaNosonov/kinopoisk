@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import * as React from 'react';
 import './EditPhotoBlock.css'
-import {Button} from "@mui/material";
+import {Film} from "../../../../shared/typesData";
 
-const EditPhotoBlock = (props) => {
-    const [isEditPhoto, setIsEditPhoto] = useState(false);
+interface EditPhotoBlockProps {
+    film?: Film;
+    setFilm: (film: Film) => void;
+}
 
-    const onChange = (e) => {
-        let file = e.target.files[0];
+const EditPhotoBlock: React.FC<EditPhotoBlockProps> = ({film, setFilm}) => {
+    const [isEditPhoto, setIsEditPhoto] = React.useState(false);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
 
         if (file) {
             const reader = new FileReader();
@@ -19,15 +24,17 @@ const EditPhotoBlock = (props) => {
         setIsEditPhoto(true);
     }
 
-    const _handleReaderLoaded = (e) => {
-        let binaryString = e.target.result;
-        props.setFilm({...props.film, poster: "data:image;base64," + btoa(binaryString)});
+    const _handleReaderLoaded = (e: ProgressEvent<FileReader>) => {
+        const binaryString = e.target?.result;
+        if (binaryString && film) {
+            setFilm({...film, poster: "data:image;base64," + btoa(binaryString as string) });
+        }
     };
 
     return (
         <div className="editPhotoBlock">
             <div className="block">
-                <img src={props.film.poster} alt=""/>
+                <img src={film?.poster} alt=""/>
                 {isEditPhoto ? <input
                     type="file"
                     name="image"

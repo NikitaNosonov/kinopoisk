@@ -5,12 +5,14 @@ import InfoBlock from "./InfoBlock/InfoBlock";
 import ActorsBlock from "./ActorsBlock/ActorsBlock";
 import {useQuery} from "@tanstack/react-query";
 import {useLocation} from "react-router-dom";
+import {Film} from "../../../shared/typesData";
 
-const InfoFilmBlocks = () => {
+
+const InfoFilmBlocks:React.FC = () => {
     const location = useLocation();
     const { id } = location.state || {};
 
-    const {data: infoFilm, isLoading} = useQuery({
+    const {data: infoFilm} = useQuery<Film>({
             queryKey: ['infoFilm', id],
             queryFn: () => fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
                 headers: {
@@ -20,9 +22,7 @@ const InfoFilmBlocks = () => {
         }
     );
 
-    return isLoading
-        ? console.log('Loading...')
-        : (
+    return (
         <div className="infoFilm">
             <PhotoBlock infoFilm={infoFilm} />
             <InfoBlock infoFilm={infoFilm}/>

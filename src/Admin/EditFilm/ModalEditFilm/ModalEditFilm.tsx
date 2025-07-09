@@ -1,69 +1,96 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Button, TextField} from "@mui/material";
 import './ModalEditFilm.css'
 import {useNavigate} from "react-router-dom";
 import {useQueryClient} from "@tanstack/react-query";
+import {Film} from "../../../shared/typesData";
 
-const ModalEditFilm = (props) => {
+interface ModalEditFilmProps {
+    setEditModal?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
+    editedFilm?: Film | null,
+    setEditedFilm?: (value: (((prevState: (Film | null)) => (Film | null)) | Film | null)) => void
+}
+
+const ModalEditFilm: React.FC<ModalEditFilmProps> = ({setEditModal, setEditedFilm, editedFilm}) => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const [error, setError] = useState('');
+    const [error, setError] = React.useState('');
 
     const fetchTask = () => {
-        queryClient.invalidateQueries(['films']);
+        queryClient.invalidateQueries({queryKey: ['films']});
     }
 
-    const editFilm = (e) => {
-        if (!props.editedFilm.firstName || !props.editedFilm.secondName || !props.editedFilm.description || !props.editedFilm.grade){
+    const editFilm = (e: React.MouseEvent) => {
+        if (!editedFilm?.firstName || !editedFilm.secondName || !editedFilm.description || !editedFilm.grade) {
             setError('**Поле обязательно для заполнения**')
         } else {
             e.preventDefault()
-            fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${props.editedFilm.id}`, {
+            fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${editedFilm.id}`, {
                 method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(props.editedFilm),
+                body: JSON.stringify(editedFilm),
             }).then(fetchTask);
-            navigate(`editFilm/${props.editedFilm.id}`)
+            navigate(`editFilm/${editedFilm.id}`)
         }
     };
 
     return (
         <div className="ModalEditFilm">
-                <TextField
-                    className="input"
-                    name={props.editedFilm.firstName}
-                    value={props.editedFilm.firstName || ''}
-                    onChange={(e) => props.setEditedFilm({...props.editedFilm, firstName: e.target.value})}
-                    type="text"
-                    placeholder="Заголовок"/>
-            {(!props.editedFilm.firstName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
-                    className="input"
-                    name={props.editedFilm.secondName}
-                    value={props.editedFilm.secondName || ''}
-                    onChange={(e) => props.setEditedFilm({...props.editedFilm, secondName: e.target.value})}
-                    type="text"
-                    placeholder="Полное название"/>
-            {(!props.editedFilm.secondName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+                className="input"
+                value={editedFilm?.firstName || ''}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (!editedFilm) return;
+                    if (setEditedFilm) {
+                        setEditedFilm(
+                            {...editedFilm, firstName: e.target.value})
+                    }
+                }}
+                type="text"
+                placeholder="Заголовок"/>
+            {(!editedFilm?.firstName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
-                    className="input"
-                    name={props.editedFilm.description}
-                    value={props.editedFilm.description || ''}
-                    onChange={(e) => props.setEditedFilm({...props.editedFilm, description: e.target.value})}
-                    type="text"
-                    placeholder="Краткое описание"/>
-            {(!props.editedFilm.description) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+                className="input"
+                value={editedFilm?.secondName || ''}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (!editedFilm) return;
+                    if (setEditedFilm) {
+                        setEditedFilm(
+                            {...editedFilm, secondName: e.target.value})
+                    }
+                }}
+                type="text"
+                placeholder="Полное название"/>
+            {(!editedFilm?.secondName) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <TextField
-                    className="input"
-                    name={props.editedFilm.grade}
-                    value={props.editedFilm.grade || ''}
-                    onChange={(e) => props.setEditedFilm({...props.editedFilm, grade: e.target.value})}
-                    type="text"
-                    placeholder="Оценка"/>
-            {(!props.editedFilm.grade) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+                className="input"
+                value={editedFilm?.description || ''}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (!editedFilm) return;
+                    if (setEditedFilm) {
+                        setEditedFilm(
+                            {...editedFilm, description: e.target.value})
+                    }
+                }}
+                type="text"
+                placeholder="Краткое описание"/>
+            {(!editedFilm?.description) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
+            <TextField
+                className="input"
+                value={editedFilm?.grade || ''}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    if (!editedFilm) return;
+                    if (setEditedFilm) {
+                        setEditedFilm(
+                            {...editedFilm, grade: e.target.value})
+                    }
+                }}
+                type="text"
+                placeholder="Оценка"/>
+            {(!editedFilm?.grade) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             <Button variant="contained" color="primary" type="submit" onClick={editFilm}>Далее</Button>
         </div>
     );

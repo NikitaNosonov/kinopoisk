@@ -1,27 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './ModalAddFilm.css'
 import {Button, TextField} from '@mui/material';
 import {useQueryClient} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 
-const ModalAddFilm = (props) => {
-    const [film, setFilm] = useState(
+interface ModalAddFilmProps {
+    index?: () => number
+}
+
+const ModalAddFilm: React.FC<ModalAddFilmProps> = ({index}) => {
+    const [film, setFilm] = React.useState(
         {poster: '', firstName: '', secondName: '', description: '', grade: ''});
 
-    const [error, setError] = useState(null);
+    const [error, setError] = React.useState<string>('');
 
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
-    let index = props.index() + 1;
-    let indexChild = props.indexChild() + 1;
+    const indexFilm = index ? index() + 1 : null;
+
+    console.log("indexFilm", indexFilm);
 
     const fetchTask = () => {
-        queryClient.invalidateQueries(['films']);
+        queryClient.invalidateQueries({queryKey: ['films']});
     }
 
-    const onChange = (e) => {
-        let file = e.target.files[0];
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
 
         if (file) {
             const reader = new FileReader();
@@ -30,12 +35,12 @@ const ModalAddFilm = (props) => {
         }
     };
 
-    const _handleReaderLoaded = (e) => {
-        let binaryString = e.target.result;
-        setFilm({...film, poster: "data:image;base64," + btoa(binaryString)});
+    const _handleReaderLoaded = (e: ProgressEvent<FileReader>) => {
+        const binaryString = e.target?.result;
+        setFilm({...film, poster: "data:image;base64," + btoa(binaryString as string)});
     };
 
-    const addNewFilm = (e) => {
+    const addNewFilm = (e: React.MouseEvent) => {
         e.preventDefault()
         if (!film.firstName || !film.secondName || !film.description || !film.grade) {
             setError('**Поле обязательно для заполнения**');
@@ -48,7 +53,7 @@ const ModalAddFilm = (props) => {
                 },
                 body: JSON.stringify({
                     poster: film.poster,
-                    id: index,
+                    id: indexFilm,
                     firstName: film.firstName,
                     secondName: film.secondName,
                     description: film.description,
@@ -58,7 +63,7 @@ const ModalAddFilm = (props) => {
             })
                 .then(fetchTask)
             setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
-            navigate(`addFilm/${index}`)
+            navigate(`addFilm/${indexFilm}`)
         }
     }
 

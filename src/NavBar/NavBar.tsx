@@ -1,17 +1,18 @@
 import React from 'react';
 import './NavBar.css'
 import {useNavigate} from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Note the named import
+import {jwtDecode} from 'jwt-decode';
+import {token} from '../shared/typesData'
 
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
     const token = localStorage.getItem('token')
 
     const navigate = useNavigate()
 
     const navigation = () => {
         if (token) {
-            const tokenDec = jwtDecode(token);
+            const tokenDec = jwtDecode<token>(token);
             if (tokenDec.role === "admin") {
                 navigate('/admin/listFilms');
             } else if (tokenDec.role === "user") {
@@ -47,8 +48,7 @@ const NavBar = () => {
                             <button className="btn0" onClick={() => {
                                 localStorage.removeItem('token')
                                 navigate('/login')
-                            }}>Выйти
-                            </button>
+                            }}>Выйти</button>
                         </li>
                     </ul>
                 </nav>

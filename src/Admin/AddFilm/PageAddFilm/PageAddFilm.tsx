@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './PageAddFilm.css'
 import AddPhotoBlock from "./AddPhotoBlock/AddPhotoBlock";
 import AddInfoBlock from "./AddInfoBlock/AddInfoBlock";
@@ -6,13 +6,14 @@ import AddActorsBlock from "./AddActorsBlock/AddActorsBlock";
 import {useNavigate, useParams} from "react-router-dom";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {Button} from "@mui/material";
+import {Film} from "../../../shared/typesData";
 
-const PageAddFilm = () => {
+const PageAddFilm: React.FC = () => {
     const {id} = useParams();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
-    const {data: infoFilm, isLoading} = useQuery({
+    const {data: infoFilm} = useQuery<Film>({
             queryKey: ['infoFilm', id],
             queryFn: () => fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
                 headers: {
@@ -23,15 +24,21 @@ const PageAddFilm = () => {
     );
 
     const fetchTask = () => {
-        queryClient.invalidateQueries(['films']);
+        queryClient.invalidateQueries({queryKey: ['films']});
     }
-    const [film, setFilm] = useState(
+    const [film, setFilm] = React.useState<Film>(
         {
+            poster: '',
+            id: null,
+            firstName: '',
+            secondName: '',
+            description: '',
+            grade: '',
             details: {
-                title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
-                rolesDuplicated: '', colRolesDuplicated: '', aboutFilmEntity:
+                title: '', fullDescription: '', grades: '', review: '', starring: [], colStarring: '',
+                rolesDuplicated: [], colRolesDuplicated: '', aboutFilmEntity:
                     {
-                        yearProd: '',
+                        yearProd: null,
                         country: '',
                         genre: '',
                         slogan: '',
@@ -57,9 +64,9 @@ const PageAddFilm = () => {
             }
         });
 
-    const starring = film.details.starring ? film.details.starring.split(',') : [];
-    const duplicated = film.details.rolesDuplicated ? film.details.rolesDuplicated.split(',') : [];
-    const [error, setError] = useState('')
+    // const starring = film.details.starring ? film.details.starring.split(',') : [];
+    // const duplicated = film.details.rolesDuplicated ? film.details.rolesDuplicated.split(',') : [];
+    const [error, setError] = React.useState('')
 
     function addNewFilmInfo() {
         if (!film.details.title || !film.details.fullDescription) {
@@ -77,9 +84,9 @@ const PageAddFilm = () => {
                         fullDescription: film.details.fullDescription,
                         grades: film.details.grades ? film.details.grades + ' оценок' : '— оценок',
                         review: film.details.review ? film.details.review + ' рецензий' : '— рецензий',
-                        starring: starring,
+                        starring: film.details.starring,
                         colStarring: film.details.colStarring ? film.details.colStarring + ' актера' : '—',
-                        rolesDuplicated: duplicated,
+                        rolesDuplicated: film.details.rolesDuplicated,
                         colRolesDuplicated: film.details.colRolesDuplicated ? film.details.colRolesDuplicated + ' актера' : '—',
                         aboutFilmEntity: {
                             yearProd: film.details.aboutFilmEntity.yearProd ? film.details.aboutFilmEntity.yearProd : '—',
@@ -110,11 +117,17 @@ const PageAddFilm = () => {
             })
                 .then(fetchTask)
             setFilm({
+                poster: '',
+                id: null,
+                firstName: '',
+                secondName: '',
+                description: '',
+                grade: '',
                 details: {
-                    title: '', fullDescription: '', grades: '', review: '', starring: '', colStarring: '',
-                    rolesDuplicated: '', colRolesDuplicated: '', aboutFilmEntity:
+                    title: '', fullDescription: '', grades: '', review: '', starring: [], colStarring: '',
+                    rolesDuplicated: [], colRolesDuplicated: '', aboutFilmEntity:
                         {
-                            yearProd: '',
+                            yearProd: null,
                             country: '',
                             genre: '',
                             slogan: '',
@@ -144,19 +157,17 @@ const PageAddFilm = () => {
     }
 
 
-    return isLoading ?
-        console.log('Loading...')
-        : (
-            <div className="pageAddFilm">
-                <div className="flexPage">
-                    <AddPhotoBlock film={film} setFilm={setFilm} infoFilm={infoFilm}/>
-                    <AddInfoBlock error={error} film={film} setFilm={setFilm}/>
-                    <AddActorsBlock error={error} film={film} setFilm={setFilm}/>
-                </div>
-                <Button className="blockPage" variant="contained" color="success" type="submit"
-                        onClick={addNewFilmInfo}>Добавить фильм</Button>
+    return (
+        <div className="pageAddFilm">
+            <div className="flexPage">
+                <AddPhotoBlock infoFilm={infoFilm}/>
+                <AddInfoBlock error={error} film={film} setFilm={setFilm}/>
+                <AddActorsBlock error={error} film={film} setFilm={setFilm}/>
             </div>
-        );
+            <Button className="blockPage" variant="contained" color="success" type="submit"
+                    onClick={addNewFilmInfo}>Добавить фильм</Button>
+        </div>
+    );
 };
 
 export default PageAddFilm;
