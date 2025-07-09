@@ -7,13 +7,13 @@ import {token} from '../shared/typesData'
 
 
 const Login: React.FC = () => {
-    const [dataUser, setDataUser] = React.useState({username: "", password: "",});
+    const [dataUser, setDataUser] = React.useState({email: "", password: "",});
     const [error, setError] = React.useState('');
     const navigate = useNavigate();
 
     const login = async (e: React.MouseEvent) => {
         e.preventDefault();
-        if (!dataUser.username || !dataUser.password) {
+        if (!dataUser.email || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
             const response = await fetch('https://246b98815ac8edb9.mokky.dev/auth', {
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: dataUser.username,
+                    email: dataUser.email,
                     password: dataUser.password
                 }),
             });
@@ -31,12 +31,12 @@ const Login: React.FC = () => {
             localStorage.setItem('token', res.token)
             const token = jwtDecode<token>(res.token)
 
-            if (token.role === 'admin' && token.username === dataUser.username) {
+            if (token.role === 'admin' && token.email === dataUser.email) {
                 navigate('/admin/listFilms')
-            } else if (token.role === 'user' && token.username === dataUser.username) {
+            } else if (token.role === 'user' && token.email === dataUser.email) {
                 navigate('/listFilms')
             }
-            setDataUser({username: "", password: "",});
+            setDataUser({email: "", password: "",});
         }
     }
 
@@ -45,12 +45,12 @@ const Login: React.FC = () => {
             <div className='login block'>
                 <div className='title'>ВХОД</div>
                 <TextField
-                    value={dataUser.username}
-                    onChange={(e) => setDataUser({...dataUser, username: e.target.value})}
+                    value={dataUser.email}
+                    onChange={(e) => setDataUser({...dataUser, email: e.target.value})}
                     className='input'
                     type='text'
                     placeholder='Логин'/>
-                {(!dataUser.username) ? error && <div className="alertDanger"><i>{error}</i></div> : null}
+                {(!dataUser.email) ? error && <div className="alertDanger"><i>{error}</i></div> : null}
                 <TextField
                     value={dataUser.password}
                     onChange={(e) => setDataUser({...dataUser, password: e.target.value})}

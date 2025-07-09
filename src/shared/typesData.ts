@@ -2,7 +2,7 @@ import { JwtPayload } from 'jwt-decode';
 
 export interface token extends JwtPayload {
     role: string;
-    username: string;
+    email: string;
 }
 
 export interface Film {
