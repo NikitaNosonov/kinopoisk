@@ -7,7 +7,7 @@
 }
 
 .container {
-    width: 85%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -16,7 +16,7 @@ header {
 }
 
 header .logo {
-
+    padding-left: 35px;
 }
 
 header nav ul {
@@ -68,7 +68,7 @@ header nav ul li input:focus {
 header nav ul li .btn0 {
     color: white;
     background: #f8f8f82d;
-    margin-left: 80px;
+    margin-left: 45px;
     height: 40px;
     width: 80px;
     border: 0;

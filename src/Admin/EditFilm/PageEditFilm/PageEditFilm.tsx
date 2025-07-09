@@ -11,7 +11,7 @@ const PageEditFilm: React.FC = () => {
         const {id} = useParams();
         const queryClient = useQueryClient();
         const navigate = useNavigate();
-        const [error, setError] = React.useState<string>('');
+        const [error, setError] = React.useState('');
 
         const {data: infoFilm} = useQuery<Film>({
             queryKey: ['infoFilm', id],
@@ -31,7 +31,6 @@ const PageEditFilm: React.FC = () => {
                 setError('**Поле обязательно для заполнения**')
             } else {
                 e.preventDefault()
-                // itemSplit()
                 fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${infoFilm.id}`, {
                     method: "PATCH",
                     headers: {

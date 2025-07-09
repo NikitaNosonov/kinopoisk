@@ -11,15 +11,10 @@ interface ModalAddFilmProps {
 const ModalAddFilm: React.FC<ModalAddFilmProps> = ({index}) => {
     const [film, setFilm] = React.useState(
         {poster: '', firstName: '', secondName: '', description: '', grade: ''});
-
-    const [error, setError] = React.useState<string>('');
-
+    const [error, setError] = React.useState('');
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-
     const indexFilm = index ? index() + 1 : null;
-
-    console.log("indexFilm", indexFilm);
 
     const fetchTask = () => {
         queryClient.invalidateQueries({queryKey: ['films']});

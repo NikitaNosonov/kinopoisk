@@ -7,7 +7,6 @@ import {token} from '../shared/typesData'
 
 const NavBar: React.FC = () => {
     const token = localStorage.getItem('token')
-
     const navigate = useNavigate()
 
     const navigation = () => {
@@ -31,7 +30,6 @@ const NavBar: React.FC = () => {
             <header className="container">
                 <nav>
                     <ul>
-                        {/*{попробовать в локал стораж сохранять юзерайди и в зависимости от него уже перемещатся*/}
                         <li>
                             <span className="logo" onClick={navigation}>КИНОПОИСК</span>
                         </li>
@@ -44,11 +42,15 @@ const NavBar: React.FC = () => {
                         <li style={{paddingTop: '3px', paddingLeft: '10px'}}>
                             <input type="text" placeholder="Фильмы, сериалы, персоны"/>
                         </li>
+                        <li style={{paddingLeft: '10px', paddingTop: '7px'}}>
+                            <a href="">{token ? jwtDecode<token>(token).email : ''}</a>
+                        </li>
                         <li>
                             <button className="btn0" onClick={() => {
                                 localStorage.removeItem('token')
                                 navigate('/login')
-                            }}>Выйти</button>
+                            }}>Выйти
+                            </button>
                         </li>
                     </ul>
                 </nav>

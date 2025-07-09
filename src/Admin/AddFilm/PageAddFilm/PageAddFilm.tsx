@@ -64,8 +64,6 @@ const PageAddFilm: React.FC = () => {
             }
         });
 
-    // const starring = film.details.starring ? film.details.starring.split(',') : [];
-    // const duplicated = film.details.rolesDuplicated ? film.details.rolesDuplicated.split(',') : [];
     const [error, setError] = React.useState('')
 
     function addNewFilmInfo() {

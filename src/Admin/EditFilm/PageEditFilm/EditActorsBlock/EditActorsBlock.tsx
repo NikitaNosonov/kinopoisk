@@ -13,7 +13,7 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
         <div className="editActorsBlock">
             <TextField
                 value={film?.details.grades}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!film) return
                     setFilm({
                         ...film, details: {
@@ -27,7 +27,7 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
             <div className="actors">
                 <TextField
                     value={film?.details.review}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -42,7 +42,7 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
                 <h4>В главных ролях &gt;</h4>
                 <TextField
                     value={film?.details.starring}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -56,7 +56,7 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
                 <p style={{fontSize: '10px'}}><i>**ввод через запятую**</i></p>
                 <TextField
                     value={film?.details.colStarring}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -71,12 +71,12 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
                 <h4>Роли дублировали &gt;</h4>
                 <TextField
                     value={film?.details.rolesDuplicated}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
                                 ...film.details,
-                                rolesDuplicated: e.target.value.split(',') // Альтернативный вариант
+                                rolesDuplicated: e.target.value.split(',')
                             }
                         })
                     }}
@@ -85,7 +85,7 @@ const EditActorsBlock:React.FC<EditActorsBlockProps> = ({film, setFilm}) => {
                 <p style={{fontSize: '10px'}}><i>**ввод через запятую**</i></p>
                 <TextField
                     value={film?.details.colRolesDuplicated}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {

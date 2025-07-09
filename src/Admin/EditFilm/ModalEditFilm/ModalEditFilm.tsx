@@ -42,7 +42,7 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = ({setEditModal, setEditedFil
             <TextField
                 className="input"
                 value={editedFilm?.firstName || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!editedFilm) return;
                     if (setEditedFilm) {
                         setEditedFilm(
@@ -55,7 +55,7 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = ({setEditModal, setEditedFil
             <TextField
                 className="input"
                 value={editedFilm?.secondName || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!editedFilm) return;
                     if (setEditedFilm) {
                         setEditedFilm(
@@ -68,7 +68,7 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = ({setEditModal, setEditedFil
             <TextField
                 className="input"
                 value={editedFilm?.description || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!editedFilm) return;
                     if (setEditedFilm) {
                         setEditedFilm(
@@ -81,7 +81,7 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = ({setEditModal, setEditedFil
             <TextField
                 className="input"
                 value={editedFilm?.grade || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!editedFilm) return;
                     if (setEditedFilm) {
                         setEditedFilm(

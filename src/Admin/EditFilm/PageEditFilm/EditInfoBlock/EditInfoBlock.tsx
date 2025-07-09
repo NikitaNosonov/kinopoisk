@@ -15,7 +15,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
             <div className="info">
                 <TextField
                     value={film?.details.title}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -32,7 +32,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <p></p>}
             <TextField
                 value={film?.details.fullDescription}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                     if (!film) return
                     setFilm({
                         ...film, details: {
@@ -57,7 +57,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Год производства</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.yearProd}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -77,7 +77,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Страна</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.country}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -97,7 +97,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Жанр</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.genre}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -117,7 +117,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3 style={{paddingBottom: "10px"}}>Слоган</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.slogan}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -137,7 +137,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Режиссер</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.director}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -157,7 +157,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Сценарий</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.script}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -177,7 +177,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Продюсер</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.producer}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -197,7 +197,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Оператор</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.operator}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -217,7 +217,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Композитор</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.composer}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -237,7 +237,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Художник</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.artist}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -257,7 +257,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Монтаж</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.montage}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -277,7 +277,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Бюджет</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.budget}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -297,7 +297,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Сборы в США</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.feesInTheUSA}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -317,7 +317,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Сборы в мире</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.feesInTheWorld}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if (!film) return
                         setFilm({
                             ...film, details: {
@@ -337,7 +337,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Сборы в России</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.feesInTheRussian}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -357,7 +357,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Премьера в России</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.premiereInRussia}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -377,7 +377,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Премьера в мире</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.premiereInWorld}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -397,7 +397,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3 style={{paddingBottom: "10px"}}>Релиз на DVD</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.releaseOnDVD}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -417,7 +417,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3 style={{paddingBottom: "10px"}}>Релиз на Blu-ray</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.releaseOnBluRay}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -437,7 +437,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Возраст</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.age}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -457,7 +457,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Рейтинг MPAA</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.ratingMPAA}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
@@ -477,7 +477,7 @@ const EditInfoBlock: React.FC<EditInfoBlockProps> = ({film, setFilm, error}) => 
                 <h3>Время</h3>
                 <TextField
                     value={film?.details.aboutFilmEntity.time}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e) => {
                         if(!film) return
                         setFilm({
                             ...film, details: {
