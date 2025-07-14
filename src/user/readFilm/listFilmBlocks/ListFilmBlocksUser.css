@@ -4,6 +4,7 @@
     height: 100%;
     width: 1320px;
     display: block;
+    max-width: 1320px;
 }
 
 .ListFilmBlocksUser h1 {

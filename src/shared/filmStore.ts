@@ -1,10 +1,12 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
 import {Film} from "./typesData";
+import React from "react";
 
 class FilmStore {
     public film: Film[] = [];
     public filmById?: Film;
-    // public filmStart: Film[] = [];
+
+    public filmStart: Film[] = [];
 
     constructor() {
         makeAutoObservable(this)
@@ -23,18 +25,19 @@ class FilmStore {
         });
     })
 
-    // fetchStart = action(async () => {
-    //     const response = await  fetch('https://246b98815ac8edb9.mokky.dev/listFilms?page=1&limit=5', {
-    //         headers: {
-    //             "Authorization": `Bearer ${localStorage.getItem('token')}`
-    //         }
-    //     });
-    //     const json = await response.json();
-    //
-    //     runInAction(() => {
-    //         this.filmStart = json.items;
-    //     });
-    // })
+    fetchStart = action(async (num: number) => {
+        const response = await  fetch(`https://246b98815ac8edb9.mokky.dev/listFilms?page=${num}&limit=5`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        const json = await response.json();
+
+        runInAction(() => {
+            this.filmStart = json.items;
+        });
+    })
+
 
     fetchFilmId = action(async (id: number | null) => {
         const response = await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
@@ -64,6 +67,19 @@ class FilmStore {
             this.filmById = json;
         })
     })
+
+    // fetchDeleteFilm = action(async (id: number | null, event: React.MouseEvent) => {
+    //     event.preventDefault();
+    //     await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`,
+    //         {
+    //             headers: {
+    //                 "Authorization": `Bearer ${localStorage.getItem('token')}`
+    //             },
+    //             method: 'DELETE'
+    //         })
+    //     await this.fetchFilm()
+    //
+    // })
 }
 
 export default new FilmStore()

@@ -6,24 +6,26 @@ import {IconButton, Table, TableBody, TableCell, TableContainer, TableRow} from 
 import {Link} from 'react-router-dom';
 import {Film} from "../../../../shared/typesData";
 import filmStore from "../../../../shared/filmStore";
+import {observer} from "mobx-react-lite";
 
 interface ItemFilmBlockProps {
-    films: Film;
-    edit: (film: Film, event: React.MouseEvent) => void;
+    films: Film,
+    edit: (film: Film, event: React.MouseEvent) => void,
+    count: number
 }
 
-const ItemFilmBlock: React.FC<ItemFilmBlockProps> = ({films, edit}) => {
+const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, count}) => {
 
     const remove = async (id: number | null, event: React.MouseEvent) => {
         event.preventDefault();
-        fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`,
+        await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`,
             {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
                 method: 'DELETE'
-            }).then(filmStore.fetchFilm)
-            .then(() => console.log('Удалено!'));
+            })
+        await filmStore.fetchStart(1);
     }
 
     return (
@@ -67,6 +69,6 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = ({films, edit}) => {
             </Link>
         </div>
     );
-};
+});
 
 export default ItemFilmBlock;

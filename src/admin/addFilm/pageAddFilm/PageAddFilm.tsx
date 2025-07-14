@@ -64,7 +64,7 @@ const PageAddFilm: React.FC = observer(() => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    poster: film.poster,
+                    poster: film.poster || '/img/nonPoster.jpeg',
                     details: {
                         title: film.details.title,
                         fullDescription: film.details.fullDescription,

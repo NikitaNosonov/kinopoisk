@@ -29,17 +29,13 @@ const App: React.FC = () => {
                 <Route path="/login/register" element={<Register/>}/>
 
                 <Route element={<NavbarLayout/>}>
-                    <Route path="/admin">
-                        <Route path="listFilms" element={<ListFilmBlocks/>}/>
-                        <Route path="listFilms/film/:id" element={<InfoFilmBlocks/>}/>
-                        <Route path="listFilms/addFilm/:id" element={<PageAddFilm/>}/>
-                        <Route path="listFilms/editFilm/:id" element={<PageEditFilm/>}/>
-                    </Route>
+                        <Route path="/admin/listFilms" element={<ListFilmBlocks/>}/>
+                        <Route path="/admin/listFilms/film/:id" element={<InfoFilmBlocks/>}/>
+                        <Route path="/admin/listFilms/addFilm/:id" element={<PageAddFilm/>}/>
+                        <Route path="/admin/listFilms/editFilm/:id" element={<PageEditFilm/>}/>
 
-                    <Route path="/">
-                    <Route path="listFilms" element={<ListFilmBlocksUser/>}/>
-                    <Route path="listFilms/film/:id" element={<InfoFilmBlocks/>}/>
-                    </Route>
+                    <Route path="/listFilms" element={<ListFilmBlocksUser/>}/>
+                    <Route path="/listFilms/film/:id" element={<InfoFilmBlocks/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

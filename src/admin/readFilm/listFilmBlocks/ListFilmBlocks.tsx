@@ -9,58 +9,31 @@ import {observer} from "mobx-react-lite";
 import filmStore from "../../../shared/filmStore";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import filmData from "../../../shared/filmStore";
-import {runInAction} from "mobx";
-
 
 const ListFilmBlocks: React.FC = observer(() => {
     const [addModal, setAddModal] = React.useState(false);
     const [editModal, setEditModal] = React.useState(false);
     const [editedFilm, setEditedFilm] = React.useState<Film | null>(null)
-
+    let count = 1
 
     React.useEffect(() => {
-        filmStore.fetchFilm();
-        const fetched = async () => {
-            const res = await fetch(
-                `https://246b98815ac8edb9.mokky.dev/listFilms?page=1&limit=5`,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${localStorage.getItem('token')}`,
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-            const data = await res.json();
-            runInAction(() => {
-                filmStore.film = data.items
-            })
-        }
-        fetched();
+        filmStore.fetchStart(1);
     }, [])
 
-    let count = 0
     const numPage = () => {
-        if (filmData.film.length < 5) {
+        filmStore.fetchFilm();
+        if (filmStore.film.length < 5) {
             return count = 1
-        } else if (filmData.film.length > 5) {
-            return count = Math.ceil(filmData.film.length / 5)
+        } else if (filmStore.film.length === 5) {
+            return 1
+        } else if (filmStore.film.length > 5) {
+            return count = Math.ceil(filmStore.film.length / 5)
         }
     }
     numPage()
 
     const handlePageChange = async (event: React.ChangeEvent<unknown>, page: number) => {
-        const res = await fetch(
-            `https://246b98815ac8edb9.mokky.dev/listFilms?page=${page}&limit=5`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-        const data = await res.json();
-        filmStore.film = await data.items
+        filmStore.fetchStart(page);
     };
 
     const edit = (film: Film, event: React.MouseEvent) => {
@@ -106,8 +79,8 @@ const ListFilmBlocks: React.FC = observer(() => {
                     </DialogContent>
                 </Dialog>
             </div>
-            {filmStore.film?.map((films: Film) => (
-                <ItemFilmBlock films={films} key={films.id} edit={edit}/>
+            {filmStore.filmStart?.map((films: Film) => (
+                <ItemFilmBlock films={films} key={films.id} edit={edit} count={count} />
             ))}
             <Stack spacing={2}>
                 <Pagination count={count}

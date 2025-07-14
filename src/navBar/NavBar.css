@@ -1,7 +1,7 @@
 .nav {
     background: rgb(17, 17, 17);
     position: fixed;
-    width: 100%;
+    width: 1440px;
     max-height: 60px;
     padding-top: 10px;
 }
@@ -68,7 +68,7 @@ header nav ul li .search:focus {
 header nav ul li .btn0 {
     color: white;
     background: #f8f8f82d;
-    margin-left: 160px;
+    margin-left: 150px;
     height: 40px;
     width: 80px;
     border: 0;

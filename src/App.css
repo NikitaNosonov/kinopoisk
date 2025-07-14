@@ -19,6 +19,7 @@ body {
   font-weight: 400;
   background: rgb(213, 213, 213);
   display: flex;
+  overflow-x: hidden;
 }
 
 a {

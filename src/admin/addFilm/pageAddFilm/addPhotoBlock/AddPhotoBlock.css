@@ -1,6 +1,6 @@
 .addPhotoBlock .block {
     padding: 20px 50px;
-    max-width: 320px;
+    width: 320px;
     display: block;
 }
 
