@@ -22,7 +22,8 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = ({films, edit}) => {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
                 method: 'DELETE'
-            }).then(filmStore.fetchFilm);
+            }).then(filmStore.fetchFilm)
+            .then(() => console.log('Удалено!'));
     }
 
     return (

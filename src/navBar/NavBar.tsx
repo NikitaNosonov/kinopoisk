@@ -5,7 +5,6 @@ import {jwtDecode} from 'jwt-decode';
 import {Film, token} from '../shared/typesData'
 import SearchNavBar from "./searchNavBar/SearchNavBar";
 import ResSearchNavBar from "./resSearchNavBar/ResSearchNavBar";
-import {observer} from "mobx-react-lite";
 
 const NavBar: React.FC = () => {
     const token = localStorage.getItem('token')
@@ -36,8 +35,6 @@ const NavBar: React.FC = () => {
 
         return () => clearTimeout(timer);
     }, [valueSearch]);
-
-    console.log(films)
 
     const navigation = () => {
         if (token) {

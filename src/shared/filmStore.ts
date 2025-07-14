@@ -4,17 +4,11 @@ import {Film} from "./typesData";
 class FilmStore {
     public film: Film[] = [];
     public filmById?: Film;
-    public searchState: boolean = false;
+    // public filmStart: Film[] = [];
 
     constructor() {
         makeAutoObservable(this)
     }
-
-    setSearchState = action((value: boolean) => {
-        runInAction(() => {
-            this.searchState = value;
-        })
-    })
 
     fetchFilm = action(async () => {
         const response = await fetch('https://246b98815ac8edb9.mokky.dev/listFilms', {
@@ -22,12 +16,25 @@ class FilmStore {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         });
-        const json: Film[] = await response.json();
+        const json = await response.json();
 
         runInAction(() => {
             this.film = json;
         });
     })
+
+    // fetchStart = action(async () => {
+    //     const response = await  fetch('https://246b98815ac8edb9.mokky.dev/listFilms?page=1&limit=5', {
+    //         headers: {
+    //             "Authorization": `Bearer ${localStorage.getItem('token')}`
+    //         }
+    //     });
+    //     const json = await response.json();
+    //
+    //     runInAction(() => {
+    //         this.filmStart = json.items;
+    //     });
+    // })
 
     fetchFilmId = action(async (id: number | null) => {
         const response = await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
