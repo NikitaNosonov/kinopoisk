@@ -1,5 +1,5 @@
 import './App.css';
-import  * as React  from 'react';
+import * as React from 'react';
 import NavBar from "./navBar/NavBar";
 import ListFilmBlocks from "./admin/readFilm/listFilmBlocks/ListFilmBlocks";
 import {BrowserRouter, Routes, Route, Outlet, Navigate} from 'react-router-dom';
@@ -23,19 +23,23 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/" element={<Navigate to="/login" replace/>}/>
 
-                <Route path="/login" element={<Login />} />
-                <Route path="/login/register" element={<Register />} />
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/login/register" element={<Register/>}/>
 
-                <Route element={<NavbarLayout />}>
-                    <Route path="/admin/listFilms" element={<ListFilmBlocks />} />
-                    <Route path="/admin/listFilms/film/:id" element={<InfoFilmBlocks />} />
-                    <Route path="/admin/listFilms/addFilm/:id" element={<PageAddFilm />} />
-                    <Route path="/admin/listFilms/editFilm/:id" element={<PageEditFilm />} />
+                <Route element={<NavbarLayout/>}>
+                    <Route path="/admin">
+                        <Route path="listFilms" element={<ListFilmBlocks/>}/>
+                        <Route path="listFilms/film/:id" element={<InfoFilmBlocks/>}/>
+                        <Route path="listFilms/addFilm/:id" element={<PageAddFilm/>}/>
+                        <Route path="listFilms/editFilm/:id" element={<PageEditFilm/>}/>
+                    </Route>
 
-                    <Route path="/listFilms" element={<ListFilmBlocksUser />} />
-                    <Route path="/listFilms/film/:id" element={<InfoFilmBlocks />} />
+                    <Route path="/">
+                    <Route path="listFilms" element={<ListFilmBlocksUser/>}/>
+                    <Route path="listFilms/film/:id" element={<InfoFilmBlocks/>}/>
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>

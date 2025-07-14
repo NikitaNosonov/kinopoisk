@@ -7,7 +7,7 @@
 }
 
 .container {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -16,7 +16,7 @@ header {
 }
 
 header .logo {
-    padding-left: 35px;
+    padding-left: 65px;
 }
 
 header nav ul {
@@ -38,7 +38,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    padding-left: 30px;
+    padding-left: 15px;
     padding-top: 10px;
     color: rgba(255, 255, 255, 0.777);
 }
@@ -47,7 +47,7 @@ header nav ul li a:hover {
     color: rgb(255, 255, 255);
 }
 
-header nav ul li input {
+header nav ul li .search {
     background: #f8f8f82d;
     margin-left: 30px;
     color: white;
@@ -60,7 +60,7 @@ header nav ul li input {
     padding-left: 10px;
 }
 
-header nav ul li input:focus {
+header nav ul li .search:focus {
     color: black;
     background: white;
 }
@@ -68,7 +68,7 @@ header nav ul li input:focus {
 header nav ul li .btn0 {
     color: white;
     background: #f8f8f82d;
-    margin-left: 45px;
+    margin-left: 160px;
     height: 40px;
     width: 80px;
     border: 0;

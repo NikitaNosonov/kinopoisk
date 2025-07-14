@@ -4,10 +4,17 @@ import {Film} from "./typesData";
 class FilmStore {
     public film: Film[] = [];
     public filmById?: Film;
+    public searchState: boolean = false;
 
     constructor() {
         makeAutoObservable(this)
     }
+
+    setSearchState = action((value: boolean) => {
+        runInAction(() => {
+            this.searchState = value;
+        })
+    })
 
     fetchFilm = action(async () => {
         const response = await fetch('https://246b98815ac8edb9.mokky.dev/listFilms', {

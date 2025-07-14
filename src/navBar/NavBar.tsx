@@ -2,12 +2,42 @@ import React from 'react';
 import './NavBar.css'
 import {useNavigate} from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
-import {token} from '../shared/typesData'
-
+import {Film, token} from '../shared/typesData'
+import SearchNavBar from "./searchNavBar/SearchNavBar";
+import ResSearchNavBar from "./resSearchNavBar/ResSearchNavBar";
+import {observer} from "mobx-react-lite";
 
 const NavBar: React.FC = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
+    const [valueSearch, setValueSearch] = React.useState("");
+    const [films, setFilms] = React.useState<Film[]>([]);
+    const [search, setSearch] = React.useState(false);
+
+    React.useEffect(() => {
+
+        const timer = setTimeout(async () => {
+            try {
+                const res = await fetch(
+                    `https://246b98815ac8edb9.mokky.dev/listFilms?firstName=${valueSearch}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                const data = await res.json();
+                setFilms(data);
+            } catch (error) {
+                console.error('Ошибка загрузки:', error);
+            }
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [valueSearch]);
+
+    console.log(films)
 
     const navigation = () => {
         if (token) {
@@ -26,7 +56,10 @@ const NavBar: React.FC = () => {
     }
 
     return (
-        <div className="nav">
+        <div className="nav" onClick={() => {
+            setSearch(false)
+            setValueSearch('')
+        }}>
             <header className="container">
                 <nav>
                     <ul>
@@ -40,10 +73,11 @@ const NavBar: React.FC = () => {
                             <a href="">Билеты в кино</a>
                         </li>
                         <li style={{paddingTop: '3px', paddingLeft: '10px'}}>
-                            <input type="text" placeholder="Фильмы, сериалы, персоны"/>
-                        </li>
-                        <li style={{paddingLeft: '10px', paddingTop: '7px'}}>
-                            <a href="">{token ? jwtDecode<token>(token).email : ''}</a>
+                            <SearchNavBar valueSearch={valueSearch}
+                                          setValueSearch={setValueSearch}
+                                          setSearch={setSearch}/>
+                            {search ? <ResSearchNavBar films={films}/> :
+                                <div style={{background: 'black'}}></div>}
                         </li>
                         <li>
                             <button className="btn0" onClick={() => {
@@ -51,6 +85,9 @@ const NavBar: React.FC = () => {
                                 navigate('/login')
                             }}>Выйти
                             </button>
+                        </li>
+                        <li style={{paddingLeft: '4px', paddingTop: '7px'}}>
+                            <a href="">{token ? jwtDecode<token>(token).email : ''}</a>
                         </li>
                     </ul>
                 </nav>

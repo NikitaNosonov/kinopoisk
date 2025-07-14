@@ -16,6 +16,7 @@ const Login: React.FC = () => {
         if (!dataUser.email || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
+            try {
             const response = await fetch('https://246b98815ac8edb9.mokky.dev/auth', {
                 method: 'POST',
                 headers: {
@@ -37,6 +38,10 @@ const Login: React.FC = () => {
                 navigate('/listFilms')
             }
             setDataUser({email: "", password: "",});
+            }
+            catch (error) {
+                alert("Неверный логин или пароль")
+            }
         }
     }
 

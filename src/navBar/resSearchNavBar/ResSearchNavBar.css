@@ -1,0 +1,49 @@
+.resSearchNavBar {
+    border-radius: 25px;
+    background: white;
+    outline: 1px solid #cdcdcd;
+    width: 367px;
+    max-width: 367px;
+    max-height: 400px;
+    margin-left: 25px;
+    margin-top: 5px;
+    padding: 2px 0;
+}
+
+.resSearchNavBar .item {
+    width: 367px;
+    max-width: 367px;
+    margin-bottom: 5px;
+    border-radius: 25px;
+}
+
+.resSearchNavBar .item:hover  {
+    background: #f4f4f4;
+    border-radius: 25px;
+}
+
+
+.resSearchNavBar .poster {
+    height: 150px;
+    width: 70px;
+    padding: 0 15px;
+}
+
+.resSearchNavBar .content {
+    width: 205px;
+}
+
+.resSearchNavBar .content h1 {
+    font-size: 15px;
+    font-weight: 700;
+    font-style: normal;
+    text-align: start;
+
+}
+
+.resSearchNavBar .content h2 {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 70px;
+}
