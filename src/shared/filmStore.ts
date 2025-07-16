@@ -38,7 +38,6 @@ class FilmStore {
         });
     })
 
-
     fetchFilmId = action(async (id: number | null) => {
         const response = await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
             headers: {

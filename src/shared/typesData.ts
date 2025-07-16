@@ -1,8 +1,7 @@
-import { JwtPayload } from 'jwt-decode';
-
-export interface token extends JwtPayload {
+export interface UserData {
     role: string;
     email: string;
+    id: number;
 }
 
 export interface Film {

@@ -101,7 +101,7 @@ const PageAddFilm: React.FC = observer(() => {
                     }
                 })
             })
-                .then(filmStore.fetchFilm)
+                // .then(filmStore.fetchFilm)
             setFilm({
                 poster: '',
                 id: null,
@@ -138,7 +138,7 @@ const PageAddFilm: React.FC = observer(() => {
                         }
                 }
             })
-            navigate('/admin/listFilms');
+            navigate('/listFilms');
         }
     }
 

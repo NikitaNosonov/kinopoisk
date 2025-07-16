@@ -37,7 +37,7 @@ const ModalAddFilm: React.FC<ModalAddFilmProps> = observer(({index}) => {
                     details: {},
                 })
             })
-                .then(filmStore.fetchFilm)
+                // .then(filmStore.fetchFilm)
             setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
             navigate(`addFilm/${indexFilm}`)
         }

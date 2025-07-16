@@ -1,14 +1,14 @@
 import React from 'react';
 import './NavBar.css'
 import {useNavigate} from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
-import {Film, token} from '../shared/typesData'
+import {Film, UserData} from '../shared/typesData'
 import SearchNavBar from "./searchNavBar/SearchNavBar";
 import ResSearchNavBar from "./resSearchNavBar/ResSearchNavBar";
 
 const NavBar: React.FC = () => {
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
+    const userDataStr = localStorage.getItem('data');
+    const userData = userDataStr ? JSON.parse(userDataStr) as UserData : null;    const navigate = useNavigate()
     const [valueSearch, setValueSearch] = React.useState("");
     const [films, setFilms] = React.useState<Film[]>([]);
     const [search, setSearch] = React.useState(false);
@@ -21,7 +21,7 @@ const NavBar: React.FC = () => {
                     `https://246b98815ac8edb9.mokky.dev/listFilms?firstName=${valueSearch}`,
                     {
                         headers: {
-                            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                            "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
                         },
                     }
@@ -36,19 +36,8 @@ const NavBar: React.FC = () => {
         return () => clearTimeout(timer);
     }, [valueSearch]);
 
-    const navigation = () => {
-        if (token) {
-            const tokenDec = jwtDecode<token>(token);
-            if (tokenDec.role === "admin") {
-                navigate('/admin/listFilms');
-            } else if (tokenDec.role === "user") {
-                navigate('/listFilms');
-            }
-        }
-    }
-
     if (!token) {
-        alert("Время сессии истекло")
+        alert("Авторизируйтесь!")
         navigate('/login');
     }
 
@@ -61,7 +50,7 @@ const NavBar: React.FC = () => {
                 <nav>
                     <ul>
                         <li>
-                            <span className="logo" onClick={navigation}>КИНОПОИСК</span>
+                            <span className="logo" onClick={() => navigate('/listFilms')}>КИНОПОИСК</span>
                         </li>
                         <li style={{paddingTop: '7px'}}>
                             <a href="">Онлайн-кинотеатр</a>
@@ -79,12 +68,13 @@ const NavBar: React.FC = () => {
                         <li>
                             <button className="btn0" onClick={() => {
                                 localStorage.removeItem('token')
+                                localStorage.removeItem('data')
                                 navigate('/login')
                             }}>Выйти
                             </button>
                         </li>
                         <li style={{paddingLeft: '4px', paddingTop: '7px'}}>
-                            <a href="">{token ? jwtDecode<token>(token).email : ''}</a>
+                            <a href="">{userData ? userData.email : ''}</a>
                         </li>
                     </ul>
                 </nav>

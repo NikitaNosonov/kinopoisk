@@ -41,7 +41,6 @@ const AddPhotoBlock: React.FC<AddPhotoBlockProps> = ({film, setFilm, error}) => 
                     /> : <button className="btn" onClick={() => setIsAddPhoto(true)}>Добавить постер</button>}
                 </div>
                 {(film) ? film.poster != null && <img className='.img' src={film.poster} alt=''/> : <p></p>}
-                {(film && !film.poster) ? error && <div className="alertDanger"><i>{error}</i></div> : <p></p>}
             </div>
         </div>
     );

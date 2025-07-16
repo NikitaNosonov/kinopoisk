@@ -2,21 +2,26 @@ import React from 'react';
 import {Button, TextField} from "@mui/material";
 import './Login.css'
 import {useNavigate} from "react-router-dom";
-import {jwtDecode} from 'jwt-decode';
-import {token} from '../shared/typesData'
-
 
 const Login: React.FC = () => {
     const [dataUser, setDataUser] = React.useState({email: "", password: "",});
     const [error, setError] = React.useState('');
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('data');
+        }
+    }, [])
+
     const login = async (e: React.MouseEvent) => {
         e.preventDefault();
-        if (!dataUser.email || !dataUser.password) {
+        if (!dataUser.email) {
+            setError('**Поле обязательно для заполнения**')
+        } else if (!dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
-            try {
             const response = await fetch('https://246b98815ac8edb9.mokky.dev/auth', {
                 method: 'POST',
                 headers: {
@@ -29,19 +34,16 @@ const Login: React.FC = () => {
                 }),
             });
             const res = await response.json()
-            localStorage.setItem('token', res.token)
-            const token = jwtDecode<token>(res.token)
-
-            if (token.role === 'admin' && token.email === dataUser.email) {
-                navigate('/admin/listFilms')
-            } else if (token.role === 'user' && token.email === dataUser.email) {
+            const status = await response.status;
+            console.log(status);
+            if (status === 201) {
+                localStorage.setItem('token', res.token)
+                localStorage.setItem('data', JSON.stringify(res.data))
                 navigate('/listFilms')
-            }
-            setDataUser({email: "", password: "",});
-            }
-            catch (error) {
+            } else {
                 alert("Неверный логин или пароль")
             }
+            setDataUser({email: "", password: "",});
         }
     }
 

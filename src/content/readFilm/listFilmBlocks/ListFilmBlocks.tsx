@@ -4,13 +4,15 @@ import ItemFilmBlock from "./itemFilmBlock/ItemFilmBlock";
 import {Button, Dialog, DialogContent, DialogTitle} from "@mui/material";
 import ModalAddFilm from "../../addFilm/modalAddFilm/ModalAddFilm";
 import ModalEditFilm from "../../editFilm/modalEditFilm/ModalEditFilm";
-import {Film} from "../../../shared/typesData";
+import {Film, UserData} from "../../../shared/typesData";
 import {observer} from "mobx-react-lite";
 import filmStore from "../../../shared/filmStore";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 const ListFilmBlocks: React.FC = observer(() => {
+    const userDataStr = localStorage.getItem('data');
+    const userData = userDataStr ? JSON.parse(userDataStr) as UserData : null;
     const [addModal, setAddModal] = React.useState(false);
     const [editModal, setEditModal] = React.useState(false);
     const [editedFilm, setEditedFilm] = React.useState<Film | null>(null)
@@ -80,7 +82,7 @@ const ListFilmBlocks: React.FC = observer(() => {
                 </Dialog>
             </div>
             {filmStore.filmStart?.map((films: Film) => (
-                <ItemFilmBlock films={films} key={films.id} edit={edit} count={count} />
+                <ItemFilmBlock films={films} key={films.id} edit={edit} count={count} userData={userData} />
             ))}
             <Stack spacing={2}>
                 <Pagination count={count}
@@ -88,8 +90,9 @@ const ListFilmBlocks: React.FC = observer(() => {
                             onChange={handlePageChange}
                             className="pagination"/>
             </Stack>
-            <Button variant="contained" color="primary" style={{marginLeft: '230px', marginTop: '30px'}}
-                    onClick={() => setAddModal(true)}>Добавить фильм</Button>
+            {(userData?.email === 'admin') ?
+                <Button variant="contained" color="primary" style={{marginLeft: '230px', marginTop: '30px'}}
+                        onClick={() => setAddModal(true)}>Добавить фильм</Button> : null}
         </div>
     );
 });

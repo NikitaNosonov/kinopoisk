@@ -74,8 +74,8 @@
 }
 
 .ItemFilmBlock a .grade {
-    width: 55px;
     border: 0;
+    padding-left: 80px;
 }
 
 .ItemFilmBlock a .grade p{
@@ -89,7 +89,6 @@
 .ItemFilmBlock a .btns {
     border: 0;
     display: flex;
-    margin-left: 100px;
     width: 30px;
 }
 

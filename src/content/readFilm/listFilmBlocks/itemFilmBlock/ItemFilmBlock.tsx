@@ -4,17 +4,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {IconButton, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {Link} from 'react-router-dom';
-import {Film} from "../../../../shared/typesData";
+import {Film, UserData} from "../../../../shared/typesData";
 import filmStore from "../../../../shared/filmStore";
 import {observer} from "mobx-react-lite";
 
 interface ItemFilmBlockProps {
     films: Film,
     edit: (film: Film, event: React.MouseEvent) => void,
-    count: number
+    count: number,
+    userData?: UserData | null;
 }
 
-const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, count}) => {
+const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, count, userData}) => {
 
     const remove = async (id: number | null, event: React.MouseEvent) => {
         event.preventDefault();
@@ -54,13 +55,16 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, coun
                                     <p>{films.grade}</p>
                                 </TableCell>
                                 <TableCell className="btns">
-                                    <IconButton className="btn1" onClick={(e) => edit(films, e)}>
-                                        <EditIcon/>
-                                    </IconButton>
-                                    <IconButton className="btn1"
-                                                onClick={(e) => remove(films.id, e)}>
+                                    {(userData?.email === 'admin') ?
+                                        <IconButton className="btn1"
+                                                    onClick={(e) => edit(films, e)}>
+                                            <EditIcon/>
+                                        </IconButton> : null}
+                                    {(userData?.email === 'admin') ?
+                                        <IconButton className="btn1"
+                                                    onClick={(e) => remove(films.id, e)}>
                                         <DeleteIcon fontSize="small"/>
-                                    </IconButton>
+                                    </IconButton> : null}
                                 </TableCell>
                             </TableRow>
                         </TableBody>

@@ -1,14 +1,14 @@
 import './App.css';
 import * as React from 'react';
 import NavBar from "./navBar/NavBar";
-import ListFilmBlocks from "./admin/readFilm/listFilmBlocks/ListFilmBlocks";
+import ListFilmBlocks from "./content/readFilm/listFilmBlocks/ListFilmBlocks";
 import {BrowserRouter, Routes, Route, Outlet, Navigate} from 'react-router-dom';
-import InfoFilmBlocks from "./admin/readFilm/infoFilmBlocks/InfoFilmBlocks";
-import PageAddFilm from "./admin/addFilm/pageAddFilm/PageAddFilm";
-import PageEditFilm from "./admin/editFilm/pageEditFilm/PageEditFilm";
+import InfoFilmBlocks from "./content/readFilm/infoFilmBlocks/InfoFilmBlocks";
+import PageAddFilm from "./content/addFilm/pageAddFilm/PageAddFilm";
+import PageEditFilm from "./content/editFilm/pageEditFilm/PageEditFilm";
 import Login from "./login/Login";
-import ListFilmBlocksUser from "./user/readFilm/listFilmBlocks/ListFilmBlocksUser";
 import Register from "./login/register/Register";
+import {AuthGuard} from "./shared/authGuard";
 
 const NavbarLayout = () => {
     return (
@@ -20,6 +20,7 @@ const NavbarLayout = () => {
 };
 
 const App: React.FC = () => {
+
     return (
         <BrowserRouter>
             <Routes>
@@ -29,13 +30,19 @@ const App: React.FC = () => {
                 <Route path="/login/register" element={<Register/>}/>
 
                 <Route element={<NavbarLayout/>}>
-                        <Route path="/admin/listFilms" element={<ListFilmBlocks/>}/>
-                        <Route path="/admin/listFilms/film/:id" element={<InfoFilmBlocks/>}/>
-                        <Route path="/admin/listFilms/addFilm/:id" element={<PageAddFilm/>}/>
-                        <Route path="/admin/listFilms/editFilm/:id" element={<PageEditFilm/>}/>
+                        <Route path="/listFilms" element={<ListFilmBlocks/>}/>
 
-                    <Route path="/listFilms" element={<ListFilmBlocksUser/>}/>
-                    <Route path="/listFilms/film/:id" element={<InfoFilmBlocks/>}/>
+                        <Route path="/listFilms/film/:id" element={<InfoFilmBlocks/>}/>
+
+                        <Route path="/listFilms/addFilm/:id" element={
+                            <AuthGuard userRole='admin'>
+                                <PageAddFilm/>
+                            </AuthGuard>}/>
+
+                        <Route path="/listFilms/editFilm/:id" element={
+                            <AuthGuard userRole='admin'>
+                                <PageEditFilm/>
+                            </AuthGuard>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

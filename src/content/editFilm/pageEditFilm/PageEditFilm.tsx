@@ -3,13 +3,12 @@ import {Button} from "@mui/material";
 import EditPhotoBlock from "./editPhotoBlock/EditPhotoBlock";
 import EditInfoBlock from "./editInfoBlock/EditInfoBlock";
 import EditActorsBlock from "./editActorsBlock/EditActorsBlock";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Film} from "../../../shared/typesData";
 import filmStore from "../../../shared/filmStore";
 import {observer} from "mobx-react-lite";
 
 const PageEditFilm: React.FC = observer(() => {
-    // const { id } = useParams();
     const navigate = useNavigate();
     const [error, setError] = React.useState('');
     //может быть вновь useEffect??? если не так будет работать
@@ -21,7 +20,7 @@ const PageEditFilm: React.FC = observer(() => {
         } else {
             e.preventDefault()
             await filmStore.fetchEditFilm(editedFilm.id, editedFilm)
-            await navigate(`/admin/listFilms`)
+            await navigate(`/listFilms`)
         }
     };
     return (
