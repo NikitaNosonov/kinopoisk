@@ -32,4 +32,42 @@
     font-size: 12px;
     margin-top: -7px;
     margin-bottom: -10px
+} 
+
+@media (max-width: 768px) {
+    .login {
+        box-sizing: border-box !important;
+        min-height: 100vh !important;
+        place-items: center !important;
+        display: grid !important;
+    }
+
+    .login .block {
+        width: 100vw !important;
+        height: 50vh  !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-sizing: content-box;
+        margin-bottom: 50px !important;
+    }
+
+    .login .block .title {
+        font-weight: normal !important;
+        font-size: 30px !important;
+        text-align: center;
+    }
+
+    .login .block .input {
+        min-width: 350px !important;
+        width: 90% !important;
+    }
+
+    .login .block .alertDanger {
+        color: red;
+        font-weight: normal;
+        font-size: 12px;
+        margin-top: -7px;
+        margin-bottom: -10px
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import './Register.css'
 import {useNavigate} from "react-router-dom";
 
@@ -36,8 +36,8 @@ const Register: React.FC = () => {
 
     return (
         <div className='login'>
-            <div className='login block'>
-                <div className='title'>Заполните учетные данные</div>
+            <div className='block'>
+                <Typography className='title'>Заполните учетные данные</Typography>
                 <TextField
                     value={dataUser.email}
                     onChange={(e) => setDataUser({...dataUser, email: e.target.value})}

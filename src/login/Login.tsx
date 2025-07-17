@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import './Login.css'
 import {useNavigate} from "react-router-dom";
 import filmStore from "../shared/filmStore";
@@ -11,7 +11,6 @@ const Login: React.FC = () => {
 
     React.useEffect(() => {
         if (filmStore.getCookie('token')) {
-            console.log(1)
             localStorage.removeItem('data');
             filmStore.deleteCookie('token');
         }
@@ -49,8 +48,8 @@ const Login: React.FC = () => {
 
     return (
         <div className='login'>
-            <div className='login block'>
-                <div className='title'>ВХОД</div>
+            <div className='block'>
+                <Typography className='title'>ВХОД</Typography>
                 <TextField
                     value={dataUser.email}
                     onChange={(e) => setDataUser({...dataUser, email: e.target.value})}

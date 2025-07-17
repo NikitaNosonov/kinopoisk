@@ -7,7 +7,7 @@
     max-width: 1320px;
 }
 
-.ListFilmBlocks h1 {
+.ListFilmBlocks .title {
     font-size: 32px;
     font-weight: bold;
     text-align: center;
@@ -16,4 +16,35 @@
 
 .ListFilmBlocks .pagination {
     margin-left: 220px;
+}
+
+.ListFilmBlocks .btnAdd {
+    margin-left: 230px;
+    margin-top: 30px;
+}
+
+@media (max-width: 767px) {
+
+    .ListFilmBlocks {
+        background: rgb(255, 255, 255);
+        margin: 70px 0;
+        height: 100%;
+        width: 100vw;
+        display: block;
+    }
+
+    .ListFilmBlocks .title {
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .ListFilmBlocks .pagination {
+        margin-left: 0;
+    }
+
+    .ListFilmBlocks .btnAdd {
+        display: none;
+    }
 }

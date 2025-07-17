@@ -4,7 +4,6 @@
     padding: 10px 10px;
     transition: all 500ms ease;
     height: 140px;
-
 }
 
 .ItemFilmBlock:hover {
@@ -78,11 +77,11 @@
     padding-left: 80px;
 }
 
-.ItemFilmBlock a .grade p{
-    font-size: 13px  ;
-    font-weight: 400  ;
-    font-style: normal  ;
-    color: rgb(157, 156, 156)  ;
+.ItemFilmBlock a .grade p {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(157, 156, 156);
     text-align: start;
 }
 
@@ -95,4 +94,72 @@
 .ItemFilmBlock a .btns .btn1 {
     height: 35px;
     margin-top: 25px;
+}
+
+@media (max-width: 767px) {
+    .ItemFilmBlock {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        height: 150px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .ItemFilmBlock a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .ItemFilmBlock a .id {
+        width: 10px;
+        min-width: 10px;
+    }
+
+    .ItemFilmBlock a .id h1 {
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    .ItemFilmBlock a .poster {
+        width: 75px;
+        min-width: 75px;
+    }
+
+    .ItemFilmBlock a .poster img {
+        width: 75px;
+        height: auto;
+    }
+
+    .ItemFilmBlock a .content {
+        flex: 1;
+        padding-left: 15px;
+        overflow: hidden;
+    }
+
+    .ItemFilmBlock a .content h1 {
+        width: 100%;
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0 0 5px 0;
+    }
+
+    .ItemFilmBlock a .content h2 {
+        width: 100%;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+
+    .ItemFilmBlock a .content p,
+    .ItemFilmBlock a .grade,
+    .ItemFilmBlock a .grade p,
+    .ItemFilmBlock a .btns {
+        display: none;
+    }
 }

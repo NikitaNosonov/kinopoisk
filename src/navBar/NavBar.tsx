@@ -1,18 +1,20 @@
 import React from 'react';
-import './NavBar.css'
-import {useNavigate} from 'react-router-dom';
-import {Film, UserData} from '../shared/typesData'
-import SearchNavBar from "./searchNavBar/SearchNavBar";
-import ResSearchNavBar from "./resSearchNavBar/ResSearchNavBar";
+import DesktopNavBar from "./desktopNavBar/DesktopNavBar";
+import "./NavBar.css"
+import MobileNavBar from "./mobileNavBar/MobileNavBar";
 import filmStore from "../shared/filmStore";
+import {Film, UserData} from "../shared/typesData";
+import {useNavigate} from "react-router-dom";
 
-const NavBar: React.FC = () => {
+const NavBar = () => {
     const token = filmStore.getCookie('token')
     const userDataStr = localStorage.getItem('data');
-    const userData = userDataStr ? JSON.parse(userDataStr) as UserData : null;    const navigate = useNavigate()
+    const userData = userDataStr ? JSON.parse(userDataStr) as UserData : null;
+    const navigate = useNavigate()
     const [valueSearch, setValueSearch] = React.useState("");
     const [films, setFilms] = React.useState<Film[]>([]);
     const [search, setSearch] = React.useState(false);
+    const [activeSearch, setActiveSearch] = React.useState(false);
 
     React.useEffect(() => {
 
@@ -28,11 +30,12 @@ const NavBar: React.FC = () => {
                     }
                 );
                 const data = await res.json();
+                console.log(res);
                 setFilms(data);
             } catch (error) {
                 console.error('Ошибка загрузки:', error);
             }
-        }, 500);
+        }, 700);
 
         return () => clearTimeout(timer);
     }, [valueSearch]);
@@ -43,44 +46,18 @@ const NavBar: React.FC = () => {
     }
 
     return (
-        <div className="nav" onClick={() => {
-            setSearch(false)
-            setValueSearch('')
-        }}>
-            <header className="container">
-                <nav>
-                    <ul>
-                        <li>
-                            <span className="logo" onClick={() => navigate('/listFilms')}>КИНОПОИСК</span>
-                        </li>
-                        <li style={{paddingTop: '7px'}}>
-                            <a href="">Онлайн-кинотеатр</a>
-                        </li>
-                        <li style={{paddingTop: '7px', paddingLeft: '15px'}}>
-                            <a href="">Билеты в кино</a>
-                        </li>
-                        <li style={{paddingTop: '3px', paddingLeft: '10px'}}>
-                            <SearchNavBar valueSearch={valueSearch}
-                                          setValueSearch={setValueSearch}
-                                          setSearch={setSearch}/>
-                            {search ? <ResSearchNavBar films={films}/> :
-                                <div style={{background: 'black'}}></div>}
-                        </li>
-                        <li>
-                            <button className="btn0" onClick={() => {
-                                localStorage.removeItem('token')
-                                localStorage.removeItem('data')
-                                navigate('/login')
-                            }}>Выйти
-                            </button>
-                        </li>
-                        <li style={{paddingLeft: '4px', paddingTop: '7px'}}>
-                            <a href="">{userData ? userData.email : ''}</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
+        <>
+            <div className="desktop">
+                <DesktopNavBar userData={userData} films={films} search={search} setSearch={setSearch} valueSearch={valueSearch}
+                               setValueSearch={setValueSearch} activeSearch={activeSearch}
+                               setActiveSearch={setActiveSearch} navigate={navigate}/>
+            </div>
+            <div className="mobile">
+                <MobileNavBar films={films} search={search} setSearch={setSearch} valueSearch={valueSearch}
+                              setValueSearch={setValueSearch} activeSearch={activeSearch}
+                              setActiveSearch={setActiveSearch} navigate={navigate}/>
+            </div>
+        </>
     );
 };
 

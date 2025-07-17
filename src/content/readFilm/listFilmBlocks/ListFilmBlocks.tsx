@@ -1,7 +1,7 @@
 import React from 'react';
 import './ListFilmBlocks.css'
 import ItemFilmBlock from "./itemFilmBlock/ItemFilmBlock";
-import {Button, Dialog, DialogContent, DialogTitle} from "@mui/material";
+import {Button, Dialog, DialogContent, DialogTitle, Typography} from "@mui/material";
 import ModalAddFilm from "../../addFilm/modalAddFilm/ModalAddFilm";
 import ModalEditFilm from "../../editFilm/modalEditFilm/ModalEditFilm";
 import {Film, UserData} from "../../../shared/typesData";
@@ -64,7 +64,7 @@ const ListFilmBlocks: React.FC = observer(() => {
                 setAddModal(false);
                 setEditModal(false);
             }}>
-                <h1>Список фильмов</h1>
+                <Typography className="title">Список фильмов</Typography>
                 <Dialog open={editModal}>
                     <DialogContent onClick={(e) => e.stopPropagation()}>
                         <DialogTitle style={{marginTop: -25}} align="center">Редактирование фильма</DialogTitle>
@@ -92,7 +92,7 @@ const ListFilmBlocks: React.FC = observer(() => {
                             className="pagination"/>
             </Stack>
             {(userData?.email === 'admin') ?
-                <Button variant="contained" color="primary" style={{marginLeft: '230px', marginTop: '30px'}}
+                <Button className="btnAdd" variant="contained" color="primary"
                         onClick={() => setAddModal(true)}>Добавить фильм</Button> : null}
         </div>
     );

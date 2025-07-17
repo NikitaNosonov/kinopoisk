@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {Box, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {useNavigate} from 'react-router-dom';
 import {Film} from "../../shared/typesData";
 import "./ResSearchNavBar.css"
@@ -12,7 +12,7 @@ const ResSearchNavBar: React.FC<resSearchNavBarProps> = ({films}) => {
     const navigate = useNavigate();
 
     return (
-        <div className="resSearchNavBar">
+        <Box className="resSearchNavBar">
             {films?.map((film) => (
             <TableContainer className="item">
                 <TableBody>
@@ -25,7 +25,7 @@ const ResSearchNavBar: React.FC<resSearchNavBarProps> = ({films}) => {
                         </TableRow>
                 </TableBody>
             </TableContainer>))}
-        </div>
+        </Box>
     );
 };
 

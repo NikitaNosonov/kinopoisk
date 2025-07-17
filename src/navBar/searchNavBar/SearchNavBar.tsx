@@ -7,7 +7,6 @@ interface searchNavBarProps {
 }
 
 const SearchNavBar: React.FC<searchNavBarProps> = ({valueSearch, setValueSearch, setSearch}) => {
-
     return (
         <input className="search"
                key="search-bar"

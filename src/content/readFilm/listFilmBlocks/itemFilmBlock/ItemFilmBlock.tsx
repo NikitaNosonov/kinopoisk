@@ -35,8 +35,8 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, coun
                   state={{
                       id: films.id,
                   }}>
-                <TableContainer>
-                    <hr style={{color: 'white', width: '400'}}></hr>
+                <TableContainer >
+                    <hr style={{color: 'white', width: '98%'}}></hr>
                     <Table className="myTable" size="small" aria-label="a dense table">
                         <TableBody>
                             <TableRow>
