@@ -22,7 +22,7 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, coun
         await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`,
             {
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    "Authorization": `Bearer ${filmStore.getCookie('token')}`
                 },
                 method: 'DELETE'
             })

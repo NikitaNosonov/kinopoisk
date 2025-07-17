@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, TextField} from "@mui/material";
 import './Login.css'
 import {useNavigate} from "react-router-dom";
+import filmStore from "../shared/filmStore";
 
 const Login: React.FC = () => {
     const [dataUser, setDataUser] = React.useState({email: "", password: "",});
@@ -9,17 +10,16 @@ const Login: React.FC = () => {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        if (localStorage.getItem('token')) {
-            localStorage.removeItem('token');
+        if (filmStore.getCookie('token')) {
+            console.log(1)
             localStorage.removeItem('data');
+            filmStore.deleteCookie('token');
         }
     }, [])
 
     const login = async (e: React.MouseEvent) => {
         e.preventDefault();
-        if (!dataUser.email) {
-            setError('**Поле обязательно для заполнения**')
-        } else if (!dataUser.password) {
+        if (!dataUser.email || !dataUser.password) {
             setError('**Поле обязательно для заполнения**')
         } else {
             const response = await fetch('https://246b98815ac8edb9.mokky.dev/auth', {
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
             const status = await response.status;
             console.log(status);
             if (status === 201) {
-                localStorage.setItem('token', res.token)
+                filmStore.setCookie('token', res.token);
                 localStorage.setItem('data', JSON.stringify(res.data))
                 navigate('/listFilms')
             } else {

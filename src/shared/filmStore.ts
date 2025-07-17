@@ -15,7 +15,7 @@ class FilmStore {
     fetchFilm = action(async () => {
         const response = await fetch('https://246b98815ac8edb9.mokky.dev/listFilms', {
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                "Authorization": `Bearer ${this.getCookie("token")}`
             }
         });
         const json = await response.json();
@@ -28,7 +28,7 @@ class FilmStore {
     fetchStart = action(async (num: number) => {
         const response = await  fetch(`https://246b98815ac8edb9.mokky.dev/listFilms?page=${num}&limit=5`, {
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                "Authorization": `Bearer ${this.getCookie("token")}`
             }
         });
         const json = await response.json();
@@ -41,7 +41,7 @@ class FilmStore {
     fetchFilmId = action(async (id: number | null) => {
         const response = await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                "Authorization": `Bearer ${this.getCookie("token")}`
             }
         });
         const json: Film = await response.json();
@@ -55,7 +55,7 @@ class FilmStore {
         const response = await fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
             method: "PATCH",
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Authorization": `Bearer ${this.getCookie("token")}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(editedFilm),
@@ -66,6 +66,44 @@ class FilmStore {
             this.filmById = json;
         })
     })
+
+    getCookie(name: string) {
+        let matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    setCookie(name: string, value: string, options: Record<string, any> = {} = {}) {
+
+        options = {
+            path: '/',
+            ...options
+        };
+
+        if (options.expires instanceof Date) {
+            options.expires = options.expires.toUTCString();
+        }
+
+        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        for (let optionKey in options) {
+            updatedCookie += "; " + optionKey;
+            let optionValue = options[optionKey];
+            if (optionValue !== true) {
+                updatedCookie += "=" + optionValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
+    }
+
+
+    deleteCookie(name: string) {
+        this.setCookie(name, "", {
+            'max-age': -1
+        })
+    }
 
     // fetchDeleteFilm = action(async (id: number | null, event: React.MouseEvent) => {
     //     event.preventDefault();

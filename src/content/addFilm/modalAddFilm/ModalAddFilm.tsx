@@ -3,6 +3,7 @@ import './ModalAddFilm.css'
 import {Button, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
+import filmStore from "../../../shared/filmStore";
 
 interface ModalAddFilmProps {
     index?: () => number
@@ -23,7 +24,7 @@ const ModalAddFilm: React.FC<ModalAddFilmProps> = observer(({index}) => {
             fetch(`https://246b98815ac8edb9.mokky.dev/listFilms`, {
                 method: 'POST',
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                    "Authorization": `Bearer ${filmStore.getCookie('token')}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({

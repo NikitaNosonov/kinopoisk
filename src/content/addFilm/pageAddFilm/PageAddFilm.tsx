@@ -60,7 +60,7 @@ const PageAddFilm: React.FC = observer(() => {
             fetch(`https://246b98815ac8edb9.mokky.dev/listFilms/${id}`, {
                 method: 'PATCH',
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                    "Authorization": `Bearer ${filmStore.getCookie('token')}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({

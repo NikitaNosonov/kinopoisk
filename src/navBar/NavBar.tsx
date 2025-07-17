@@ -4,9 +4,10 @@ import {useNavigate} from 'react-router-dom';
 import {Film, UserData} from '../shared/typesData'
 import SearchNavBar from "./searchNavBar/SearchNavBar";
 import ResSearchNavBar from "./resSearchNavBar/ResSearchNavBar";
+import filmStore from "../shared/filmStore";
 
 const NavBar: React.FC = () => {
-    const token = localStorage.getItem('token')
+    const token = filmStore.getCookie('token')
     const userDataStr = localStorage.getItem('data');
     const userData = userDataStr ? JSON.parse(userDataStr) as UserData : null;    const navigate = useNavigate()
     const [valueSearch, setValueSearch] = React.useState("");

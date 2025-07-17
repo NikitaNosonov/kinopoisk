@@ -41,6 +41,7 @@ const ListFilmBlocks: React.FC = observer(() => {
     const edit = (film: Film, event: React.MouseEvent) => {
         event.preventDefault();
         setEditModal(true);
+        alert( document.cookie );
         setEditedFilm({...film})
     }
 
