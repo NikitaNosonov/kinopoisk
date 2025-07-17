@@ -11,7 +11,6 @@ import {observer} from "mobx-react-lite";
 const PageEditFilm: React.FC = observer(() => {
     const navigate = useNavigate();
     const [error, setError] = React.useState('');
-    //может быть вновь useEffect??? если не так будет работать
     const [editedFilm, setEditedFilm] = React.useState<Film | null>(filmStore.filmById || null)
 
     const editFilm = async (e: React.MouseEvent) => {

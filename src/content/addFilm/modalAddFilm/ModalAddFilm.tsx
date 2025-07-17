@@ -2,7 +2,6 @@ import React from 'react';
 import './ModalAddFilm.css'
 import {Button, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
-import filmStore from "../../../shared/filmStore";
 import {observer} from "mobx-react-lite";
 
 interface ModalAddFilmProps {
@@ -37,7 +36,6 @@ const ModalAddFilm: React.FC<ModalAddFilmProps> = observer(({index}) => {
                     details: {},
                 })
             })
-                // .then(filmStore.fetchFilm)
             setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
             navigate(`addFilm/${indexFilm}`)
         }

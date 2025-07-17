@@ -16,10 +16,6 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = observer(({setEditModal, set
     const navigate = useNavigate();
     const [error, setError] = React.useState('');
 
-    // React.useEffect(() => {
-    //     filmStore.fetchFilmId(editedFilm?.id || null);
-    // }, [editedFilm?.id]);
-
     const editFilm = async (e: React.MouseEvent) => {
         if (!editedFilm?.firstName || !editedFilm.secondName || !editedFilm.description || !editedFilm.grade) {
             setError('**Поле обязательно для заполнения**')

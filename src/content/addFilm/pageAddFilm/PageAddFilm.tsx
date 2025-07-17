@@ -53,7 +53,7 @@ const PageAddFilm: React.FC = observer(() => {
 
     const [error, setError] = React.useState('')
 
-    function addNewFilmInfo() {
+    const addNewFilmInfo = () => {
         if (!film.details.title || !film.details.fullDescription) {
             setError('**Поле обязательно для заполнения**')
         } else {
@@ -101,7 +101,7 @@ const PageAddFilm: React.FC = observer(() => {
                     }
                 })
             })
-                // .then(filmStore.fetchFilm)
+            filmStore.fetchStart(1)
             setFilm({
                 poster: '',
                 id: null,
