@@ -1,14 +1,14 @@
 import './App.css';
 import * as React from 'react';
-import NavBar from "./navBar/NavBar";
-import ListFilmBlocks from "./content/readFilm/listFilmBlocks/ListFilmBlocks";
+import NavBar from "./pages/navBar/NavBar";
+import ListFilmBlocks from "./pages/readFilm/listFilmBlocks/ListFilmBlocks";
 import {BrowserRouter, Routes, Route, Outlet, Navigate} from 'react-router-dom';
-import InfoFilmBlocks from "./content/readFilm/infoFilmBlocks/InfoFilmBlocks";
-import PageAddFilm from "./content/addFilm/pageAddFilm/PageAddFilm";
-import PageEditFilm from "./content/editFilm/pageEditFilm/PageEditFilm";
-import Login from "./login/Login";
-import Register from "./login/register/Register";
-import {AuthGuard} from "./shared/authGuard";
+import InfoFilmBlocks from "./pages/readFilm/infoFilmBlocks/InfoFilmBlocks";
+import PageAddFilm from "./pages/addFilm/pageAddFilm/PageAddFilm";
+import PageEditFilm from "./pages/editFilm/pageEditFilm/PageEditFilm";
+import Login from "./pages/loginPage/Login";
+import Register from "./pages/loginPage/registerPage/Register";
+import {AuthGuard} from "./authGuard";
 
 const NavbarLayout = () => {
     return (

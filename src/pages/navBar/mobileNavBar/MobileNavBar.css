@@ -1,0 +1,86 @@
+.mobnav {
+    background: rgb(17, 17, 17);
+    position: fixed;
+    max-width: 768px;
+    width: 100vw;
+    min-height: 7%;
+    max-height: 120px;
+    padding-top: 10px;
+    padding-left: 0 !important;
+    margin-bottom: 0;
+
+}
+
+.mobcontainer {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: start;
+}
+
+.mobnav .search {
+    background: #f8f8f82d;
+    margin-bottom: 10px;
+    margin-left: -20px;
+    color: white;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.mobnav .search:focus {
+    color: black;
+    background: white;
+}
+
+.closeBtn {
+    color: gray;
+    font-size: 40px !important;
+    margin-left: 15px;
+    margin-bottom: -13px !important;
+}
+
+header nav ul .moblogo {
+    padding: 0;
+    display: block;
+    width: 100%;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+header nav ul .space {
+    place-items: end;
+    width: 330%;
+}
+
+header nav ul .searchBtn {
+    color: gray;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+header nav ul li .mobbtn0 {
+    color: white;
+    background: #f8f8f82d;
+    height: 40px;
+    width: 70px;
+    border: 0;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 500ms ease;
+}
+
+.mobcontainer2 {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+

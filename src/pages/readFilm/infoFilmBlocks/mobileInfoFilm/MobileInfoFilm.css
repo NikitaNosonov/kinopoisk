@@ -1,0 +1,53 @@
+.mobileInfoFilm {
+    margin-left: -7px;
+    margin-top: 15%;
+    display: grid;
+    place-items: center;
+}
+
+.mobileInfoFilm .poster {
+    width: 60%;
+    max-width: 65%;
+}
+
+.mobileInfoFilm .title {
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.mobileInfoFilm .content {
+    margin-top: 3%;
+    place-items: center;
+}
+
+.mobileInfoFilm .content .description1 {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.mobileInfoFilm .content .description2 {
+    text-align: center;
+    font-size: 13px;
+    color: #939393;
+}
+
+.actorsBlock .txt {
+    place-items: start;
+    margin-top: 5%;
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.actorsBlock .actors {
+    display: grid;
+    margin: 12px;
+    grid-template-rows: repeat(4, 40px);
+    grid-template-columns: repeat(4, 200px);
+    overflow-x: auto;
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
