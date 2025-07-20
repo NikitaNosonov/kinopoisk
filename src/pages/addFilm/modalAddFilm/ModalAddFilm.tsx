@@ -4,6 +4,7 @@ import {Button, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import fetchFilm from "../../../services/filmService";
+import filmService from "../../../services/filmService";
 
 interface ModalAddFilmProps {
     index?: () => number
@@ -32,7 +33,7 @@ const ModalAddFilm: React.FC<ModalAddFilmProps> = observer(({index}) => {
             });
 
             setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
-            navigate(`addFilm/${indexFilm}`)
+            navigate(filmService.addFilmRoute(indexFilm))
         }
     }
 

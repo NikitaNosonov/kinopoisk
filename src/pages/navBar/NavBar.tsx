@@ -5,6 +5,7 @@ import MobileNavBar from "./mobileNavBar/MobileNavBar";
 import filmStore from "../../store/filmStore";
 import {Film, UserData} from "../../types/typesData";
 import {useNavigate} from "react-router-dom";
+import filmService from "../../services/filmService";
 
 const NavBar = () => {
     const token = filmStore.getCookie('token')
@@ -20,17 +21,7 @@ const NavBar = () => {
 
         const timer = setTimeout(async () => {
             try {
-                const res = await fetch(
-                    `https://246b98815ac8edb9.mokky.dev/listFilms?firstName=${valueSearch}`,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                const data = await res.json();
-                console.log(res);
+                const data = await filmService.searchFilm(valueSearch)
                 setFilms(data);
             } catch (error) {
                 console.error('Ошибка загрузки:', error);
@@ -42,7 +33,7 @@ const NavBar = () => {
 
     if (!token) {
         alert("Авторизируйтесь!")
-        navigate('/login');
+        navigate(filmService.loginRoute);
     }
 
     return (

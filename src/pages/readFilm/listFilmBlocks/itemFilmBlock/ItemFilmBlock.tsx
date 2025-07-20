@@ -6,7 +6,9 @@ import {IconButton, Table, TableBody, TableCell, TableContainer, TableRow} from 
 import {Link} from 'react-router-dom';
 import {Film, UserData} from "../../../../types/typesData";
 import fetchFilm from "../../../../services/filmService";
+import filmStore from "../../../../store/filmStore";
 import {observer} from "mobx-react-lite";
+import filmService from "../../../../services/filmService";
 
 interface ItemFilmBlockProps {
     films: Film,
@@ -17,14 +19,15 @@ interface ItemFilmBlockProps {
 
 const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, count, userData}) => {
 
-    const remove = (id: number | null, event: React.MouseEvent) => {
+    const remove = async (id: number | null, event: React.MouseEvent) => {
         event.preventDefault();
-        fetchFilm.deleteFilm(id);
+        await fetchFilm.deleteFilm(id);
+        await filmStore.fetchStart(1);
     }
 
     return (
         <div className="ItemFilmBlock">
-            <Link to={`film/${films.id}`}
+            <Link to={filmService.infoFilmRoute(films.id)}
                   state={{
                       id: films.id,
                   }}>

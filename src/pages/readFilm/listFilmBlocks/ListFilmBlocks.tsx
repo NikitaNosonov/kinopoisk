@@ -19,7 +19,8 @@ const ListFilmBlocks: React.FC = observer(() => {
     let count = 1
 
     React.useEffect(() => {
-        filmStore.fetchStart(1).then(r => console.log('ura', Array.isArray(filmStore.filmStart)));
+        filmStore.fetchFilm();
+        filmStore.fetchStart(1);
     }, [])
 
     const numPage = () => {

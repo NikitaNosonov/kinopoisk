@@ -8,6 +8,7 @@ import {Button} from "@mui/material";
 import {Film} from "../../../types/typesData";
 import filmStore from "../../../store/filmStore";
 import {observer} from "mobx-react-lite";
+import filmService from "../../../services/filmService";
 
 const PageAddFilm: React.FC = observer(() => {
     const {id} = useParams();
@@ -75,28 +76,28 @@ const PageAddFilm: React.FC = observer(() => {
                         rolesDuplicated: film.details.rolesDuplicated,
                         colRolesDuplicated: film.details.colRolesDuplicated ? film.details.colRolesDuplicated + ' актера' : '—',
                         aboutFilmEntity: {
-                            yearProd: film.details.aboutFilmEntity.yearProd ?? '—',
-                            country: film.details.aboutFilmEntity.country ?? '—',
-                            genre: film.details.aboutFilmEntity.genre ?? '—',
-                            slogan: film.details.aboutFilmEntity.slogan ?? '—',
-                            director: film.details.aboutFilmEntity.director ?? '—',
-                            script: film.details.aboutFilmEntity.script ?? '—',
-                            producer: film.details.aboutFilmEntity.producer ?? '—',
-                            operator: film.details.aboutFilmEntity.operator ?? '—',
-                            composer: film.details.aboutFilmEntity.composer ?? '—',
-                            artist: film.details.aboutFilmEntity.artist ?? '—',
-                            montage: film.details.aboutFilmEntity.montage ?? '—',
-                            budget: film.details.aboutFilmEntity.budget ?? '—',
-                            feesInTheUSA: film.details.aboutFilmEntity.feesInTheUSA ?? '—',
-                            feesInTheWorld: film.details.aboutFilmEntity.feesInTheWorld ?? '—',
-                            feesInTheRussian: film.details.aboutFilmEntity.feesInTheRussian ?? '—',
-                            premiereInRussia: film.details.aboutFilmEntity.premiereInRussia ?? '—',
-                            premiereInWorld: film.details.aboutFilmEntity.premiereInWorld ?? '—',
-                            releaseOnDVD: film.details.aboutFilmEntity.releaseOnDVD ?? '—',
-                            releaseOnBluRay: film.details.aboutFilmEntity.releaseOnBluRay ?? '—',
-                            age: film.details.aboutFilmEntity.age ?? '—',
-                            ratingMPAA: film.details.aboutFilmEntity.ratingMPAA ?? '—',
-                            time: film.details.aboutFilmEntity.time ?? '—',
+                            yearProd: film.details.aboutFilmEntity.yearProd || '—',
+                            country: film.details.aboutFilmEntity.country || '—',
+                            genre: film.details.aboutFilmEntity.genre || '—',
+                            slogan: film.details.aboutFilmEntity.slogan || '—',
+                            director: film.details.aboutFilmEntity.director || '—',
+                            script: film.details.aboutFilmEntity.script || '—',
+                            producer: film.details.aboutFilmEntity.producer || '—',
+                            operator: film.details.aboutFilmEntity.operator || '—',
+                            composer: film.details.aboutFilmEntity.composer || '—',
+                            artist: film.details.aboutFilmEntity.artist || '—',
+                            montage: film.details.aboutFilmEntity.montage || '—',
+                            budget: film.details.aboutFilmEntity.budget || '—',
+                            feesInTheUSA: film.details.aboutFilmEntity.feesInTheUSA || '—',
+                            feesInTheWorld: film.details.aboutFilmEntity.feesInTheWorld || '—',
+                            feesInTheRussian: film.details.aboutFilmEntity.feesInTheRussian || '—',
+                            premiereInRussia: film.details.aboutFilmEntity.premiereInRussia || '—',
+                            premiereInWorld: film.details.aboutFilmEntity.premiereInWorld || '—',
+                            releaseOnDVD: film.details.aboutFilmEntity.releaseOnDVD || '—',
+                            releaseOnBluRay: film.details.aboutFilmEntity.releaseOnBluRay || '—',
+                            age: film.details.aboutFilmEntity.age || '—',
+                            ratingMPAA: film.details.aboutFilmEntity.ratingMPAA || '—',
+                            time: film.details.aboutFilmEntity.time || '—',
                         }
                     }
                 })
@@ -138,7 +139,7 @@ const PageAddFilm: React.FC = observer(() => {
                         }
                 }
             })
-            navigate('/listFilms');
+            navigate(filmService.listFilmsRoute);
         }
     }
 

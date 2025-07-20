@@ -7,6 +7,7 @@ import {NavigateFunction} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import "./MobileNavBar.css"
+import filmService from "../../../services/filmService";
 
 
 interface MobileNavBarProps {
@@ -43,7 +44,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
                     <ul className="mobcontainer">
                         <li>
                             <span className="moblogo"
-                                  onClick={() => navigate ? navigate('/listFilms') : null}>КИНОПОИСК</span>
+                                  onClick={() => navigate ? navigate(filmService.listFilmsRoute) : null}>КИНОПОИСК</span>
                         </li>
                         <li className='space'></li>
                         <li>

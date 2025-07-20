@@ -1,9 +1,14 @@
-import {action} from "mobx";
 import filmStore from "../store/filmStore";
 import {Film} from "../types/typesData";
 
 class FetchFilm {
-    public api: string = 'https://246b98815ac8edb9.mokky.dev/listFilms'
+    api: string = 'https://246b98815ac8edb9.mokky.dev/listFilms'
+    loginRoute: string = '/login'
+    registerRoute: string = '/register'
+    listFilmsRoute: string = '/listFilms'
+    infoFilmRoute = (id: number | null) => `/film/${id}`
+    addFilmRoute = (id: number | null) => `/addFilm/${id}`
+    editFilmRoute = (id: number | null) => `/editFilm/${id}`
 
     getFilm = async () => {
         const response = await fetch(this.api, {
@@ -48,14 +53,13 @@ class FetchFilm {
         await fetch(`${this.api}/${id}`,
             {
                 headers: {
-                    "Authorization": `Bearer ${localStorage.getCookie('token')}`
+                    "Authorization": `Bearer ${filmStore.getCookie('token')}`
                 },
                 method: 'DELETE'
             })
-        await this.getStartFilm(1)
     }
 
-    addFilm = (async (newFilm: {
+    addFilm = ((newFilm: {
         id: number | null;
         poster: string;
         firstName: string;
@@ -76,6 +80,19 @@ class FetchFilm {
             })
         })
     })
+
+    searchFilm = async (valueSearch: string) => {
+        const response = await fetch(
+            `https://246b98815ac8edb9.mokky.dev/listFilms?firstName=${valueSearch}`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${filmStore.getCookie('token')}`,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        return await response.json();
+    }
 }
 
 export default new FetchFilm()

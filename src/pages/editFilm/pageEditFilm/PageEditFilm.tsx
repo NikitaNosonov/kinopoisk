@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {Film} from "../../../types/typesData";
 import filmStore from "../../../store/filmStore";
 import {observer} from "mobx-react-lite";
+import filmService from "../../../services/filmService";
 
 const PageEditFilm: React.FC = observer(() => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const PageEditFilm: React.FC = observer(() => {
         } else {
             e.preventDefault()
             await filmStore.fetchEditFilm(editedFilm.id, editedFilm)
-            await navigate(`/listFilms`)
+            await navigate(filmService.listFilmsRoute)
         }
     };
     return (

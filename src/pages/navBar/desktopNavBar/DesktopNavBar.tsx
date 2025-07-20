@@ -6,6 +6,7 @@ import SearchNavBar from "../searchNavBar/SearchNavBar";
 import ResSearchNavBar from "../resSearchNavBar/ResSearchNavBar";
 import filmStore from "../../../store/filmStore";
 import {Box} from "@mui/material";
+import filmService from "../../../services/filmService";
 
 interface DesktopNavBarProps {
     search?: boolean,
@@ -43,7 +44,7 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({
                     <ul>
                         <li>
                             <span className="logo"
-                                  onClick={() => navigate ? navigate('/listFilms') : null}>КИНОПОИСК</span>
+                                  onClick={() => navigate ? navigate(filmService.listFilmsRoute) : null}>КИНОПОИСК</span>
                         </li>
                         <li style={{paddingTop: '7px'}}>
                             <a href="">Онлайн-кинотеатр</a>

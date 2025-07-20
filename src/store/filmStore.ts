@@ -21,10 +21,8 @@ class FilmStore {
 
     fetchStart = action(async (num: number | null) => {
         const data = await fetchFilm.getStartFilm(num);
-        console.log(data)
         runInAction(() => {
-            this.filmStart = data;
-            console.log(this.filmStart)
+            this.filmStart = data.items;
         });
     })
 

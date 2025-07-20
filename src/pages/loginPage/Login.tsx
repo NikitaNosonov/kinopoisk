@@ -3,6 +3,7 @@ import {Button, TextField, Typography} from "@mui/material";
 import './Login.css'
 import {useNavigate} from "react-router-dom";
 import filmStore from "../../store/filmStore";
+import filmService from "../../services/filmService";
 
 const Login: React.FC = () => {
     const [dataUser, setDataUser] = React.useState({email: "", password: "",});
@@ -68,7 +69,7 @@ const Login: React.FC = () => {
                     <Button className='btn1' variant="contained" color="primary" type="submit"
                             onClick={login}>Войти</Button>
                     <Button className='btn2' variant="contained" color="primary" type="submit"
-                            onClick={() => navigate('/login/register')}>Зарегистрироваться</Button>
+                            onClick={() => navigate(filmService.registerRoute)}>Зарегистрироваться</Button>
                 </div>
             </div>
         </div>
