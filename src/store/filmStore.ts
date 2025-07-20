@@ -1,6 +1,6 @@
 import {action, makeAutoObservable, runInAction} from "mobx";
 import {Film} from "../types/typesData";
-import fetchFilm from "../services/filmService"
+import fetchFilm from "../services/fetchFilmService"
 import React from "react";
 
 class FilmStore {

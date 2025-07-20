@@ -3,7 +3,7 @@ import {Box, TableBody, TableCell, TableContainer, TableRow} from "@mui/material
 import {useNavigate} from 'react-router-dom';
 import {Film} from "../../../types/typesData";
 import "./ResSearchNavBar.css"
-import filmService from "../../../services/filmService";
+import route from "../../../services/routeService";
 
 interface resSearchNavBarProps {
     films?: Film[];
@@ -17,7 +17,7 @@ const ResSearchNavBar: React.FC<resSearchNavBarProps> = ({films}) => {
             {films?.map((film) => (
             <TableContainer className="item">
                 <TableBody>
-                        <TableRow onClick={() => film.id ? navigate(filmService.infoFilmRoute(film.id)) : null}>
+                        <TableRow onClick={() => film.id ? navigate(route.infoFilmRoute(film.id)) : null}>
                             <TableCell className="poster"><img src={film.poster} alt=""/></TableCell>
                             <TableCell className="content">
                                 <h1>{film.firstName}</h1>

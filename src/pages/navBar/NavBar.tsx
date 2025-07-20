@@ -5,7 +5,9 @@ import MobileNavBar from "./mobileNavBar/MobileNavBar";
 import filmStore from "../../store/filmStore";
 import {Film, UserData} from "../../types/typesData";
 import {useNavigate} from "react-router-dom";
-import filmService from "../../services/filmService";
+import filmService from "../../services/fetchFilmService";
+import route from "../../services/routeService";
+
 
 const NavBar = () => {
     const token = filmStore.getCookie('token')
@@ -33,7 +35,7 @@ const NavBar = () => {
 
     if (!token) {
         alert("Авторизируйтесь!")
-        navigate(filmService.loginRoute);
+        navigate(route.loginRoute);
     }
 
     return (

@@ -8,7 +8,7 @@ import {Button} from "@mui/material";
 import {Film} from "../../../types/typesData";
 import filmStore from "../../../store/filmStore";
 import {observer} from "mobx-react-lite";
-import filmService from "../../../services/filmService";
+import route from "../../../services/routeService";
 
 const PageAddFilm: React.FC = observer(() => {
     const {id} = useParams();
@@ -139,7 +139,7 @@ const PageAddFilm: React.FC = observer(() => {
                         }
                 }
             })
-            navigate(filmService.listFilmsRoute);
+            navigate(route.listFilmsRoute);
         }
     }
 

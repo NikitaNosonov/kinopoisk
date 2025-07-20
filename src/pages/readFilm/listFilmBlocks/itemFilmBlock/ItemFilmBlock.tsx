@@ -5,10 +5,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import {IconButton, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import {Link} from 'react-router-dom';
 import {Film, UserData} from "../../../../types/typesData";
-import fetchFilm from "../../../../services/filmService";
+import fetchFilm from "../../../../services/fetchFilmService";
 import filmStore from "../../../../store/filmStore";
 import {observer} from "mobx-react-lite";
-import filmService from "../../../../services/filmService";
+import route from "../../../../services/routeService";
 
 interface ItemFilmBlockProps {
     films: Film,
@@ -27,7 +27,7 @@ const ItemFilmBlock: React.FC<ItemFilmBlockProps> = observer(({films, edit, coun
 
     return (
         <div className="ItemFilmBlock">
-            <Link to={filmService.infoFilmRoute(films.id)}
+            <Link to={route.infoFilmRoute(films.id)}
                   state={{
                       id: films.id,
                   }}>

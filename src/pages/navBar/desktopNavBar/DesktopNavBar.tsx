@@ -1,12 +1,11 @@
 import React from 'react';
 import './DesktopNavBar.css'
-import {NavigateFunction, useNavigate} from 'react-router-dom';
+import {NavigateFunction} from 'react-router-dom';
 import {Film, UserData} from '../../../types/typesData'
 import SearchNavBar from "../searchNavBar/SearchNavBar";
 import ResSearchNavBar from "../resSearchNavBar/ResSearchNavBar";
-import filmStore from "../../../store/filmStore";
 import {Box} from "@mui/material";
-import filmService from "../../../services/filmService";
+import route from "../../../services/routeService";
 
 interface DesktopNavBarProps {
     search?: boolean,
@@ -44,7 +43,7 @@ const DesktopNavBar: React.FC<DesktopNavBarProps> = ({
                     <ul>
                         <li>
                             <span className="logo"
-                                  onClick={() => navigate ? navigate(filmService.listFilmsRoute) : null}>КИНОПОИСК</span>
+                                  onClick={() => navigate ? navigate(route.listFilmsRoute) : null}>КИНОПОИСК</span>
                         </li>
                         <li style={{paddingTop: '7px'}}>
                             <a href="">Онлайн-кинотеатр</a>

@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {Film} from "../../../types/typesData";
 import filmStore from "../../../store/filmStore";
 import {observer} from "mobx-react-lite";
-import filmService from "../../../services/filmService";
+import route from "../../../services/routeService";
 
 interface ModalEditFilmProps {
     setEditModal?: (value: (((prevState: boolean) => boolean) | boolean)) => void,
@@ -23,7 +23,7 @@ const ModalEditFilm: React.FC<ModalEditFilmProps> = observer(({setEditModal, set
         } else {
             e.preventDefault()
             await filmStore.fetchEditFilm(editedFilm.id, editedFilm)
-            await navigate(filmService.editFilmRoute(editedFilm.id))
+            await navigate(route.editFilmRoute(editedFilm.id))
         }
     };
 

@@ -3,12 +3,6 @@ import {Film} from "../types/typesData";
 
 class FetchFilm {
     api: string = 'https://246b98815ac8edb9.mokky.dev/listFilms'
-    loginRoute: string = '/login'
-    registerRoute: string = '/register'
-    listFilmsRoute: string = '/listFilms'
-    infoFilmRoute = (id: number | null) => `/film/${id}`
-    addFilmRoute = (id: number | null) => `/addFilm/${id}`
-    editFilmRoute = (id: number | null) => `/editFilm/${id}`
 
     getFilm = async () => {
         const response = await fetch(this.api, {

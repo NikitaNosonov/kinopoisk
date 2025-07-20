@@ -3,8 +3,8 @@ import './ModalAddFilm.css'
 import {Button, TextField} from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
-import fetchFilm from "../../../services/filmService";
-import filmService from "../../../services/filmService";
+import fetchFilm from "../../../services/fetchFilmService";
+import route from "../../../services/routeService";
 
 interface ModalAddFilmProps {
     index?: () => number
@@ -33,7 +33,7 @@ const ModalAddFilm: React.FC<ModalAddFilmProps> = observer(({index}) => {
             });
 
             setFilm({poster: '', firstName: '', secondName: '', description: '', grade: ''})
-            navigate(filmService.addFilmRoute(indexFilm))
+            navigate(route.addFilmRoute(indexFilm))
         }
     }
 
